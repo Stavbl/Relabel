@@ -1,7 +1,18 @@
 const mongoose = require('mongoose');
 var User = require('../models/user');
 
-exports.getData = function(req,res){
+var service = {};
+
+service.getData = getData;
+service.login = login;
+service.getPrefById = getPrefById;
+service.setPref = setPref;
+// service.update = update;
+// service.delete = _delete;
+
+module.exports = service;
+
+function getData(req,res){
     FT.find({},
     (err,docs) => {
         if(err) console.log(`query error: ${err}`);
@@ -10,22 +21,19 @@ exports.getData = function(req,res){
         return;
     });
 }
-exports.login = function(username, password){
+function login(username, password){
     return new Promise((resolve, reject) => {
       User.findOne({username: username},
         (err, user) => {
           if(err) {
             reject({"error": err});
-            console.log('STATUS: FAILED');
+            console.log('LOGIN STATUS: FAILED');
           }
-          console.log('STATUS: SUCCESS');
+          console.log('LOGIN STATUS: SUCCESS');
           if(!user) {
             console.log("info : wrong username");
             return resolve({"info": " wrong username"});
           }
-          console.log(user.password);
-          console.log(password);
-
           if(!user.password === password) {
             console.log("info : wrong password");
             resolve({"info": " wrong password"});
@@ -35,6 +43,66 @@ exports.login = function(username, password){
         });
     });
 }
+function getPrefById(username){
+    return new Promise((resolve, reject) => {
+      User.findOne({username: username},
+        (err, user) => {
+          if(err) {
+            console.log('getPrefById STATUS: FAILED');
+            reject({"error": err});
+          }
+          console.log('getPrefById STATUS: SUCCESS');
+          if(!user) {
+            console.log("info : wrong username");
+            return resolve({"info": " wrong username"});
+          }
+          resolve(user.preferences);
+        });
+    });
+}
+function setPref(userParam) { 
+    return new Promise((resolve, reject) => {
+      // User.findOne({username: userParam.username},
+      //   (err, user) => {
+      //     if(err) {
+      //       reject({"error": err});
+      //       console.log('setPREF STATUS: FAILED');
+      //     }
+      //     console.log('setPREF STATUS: SUCCESS');
+      //     if(!user) {
+      //       console.log("info : wrong username");
+      //       return resolve({"info": " wrong username"});
+      //     }
+          var conditions = {username: userParam.username},
+          update = {'preferences.0.value':userParam.detriot,
+                    'preferences.1.value':userParam.hard,
+                    'preferences.2.value':userParam.dance,
+                    'preferences.3.value':userParam.minimal,
+                    'preferences.4.value':userParam.classic,
+                    'preferences.5.value':userParam.house,
+                    'preferences.6.value':userParam.vgm,
+                    'preferences.7.value':userParam.hard_acid,
+                    'preferences.8.value':userParam.electro
+                    },
+          opts = {new:true};
+
+          User.update(conditions, update, opts, 
+            (err) => {
+                if(err) {
+                  reject({"error": err});
+                  console.log('updatePREF STATUS: FAILED');
+              }
+
+            else{
+                console.log(`updated doc: `);
+            }
+
+            });
+          resolve();
+        });
+    // });
+  }
+
 // function authenticate(username, password) {
 //     var deferred = Q.defer();
 

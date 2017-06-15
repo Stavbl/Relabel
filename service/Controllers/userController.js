@@ -7,8 +7,8 @@ var userService = require('../services/user.service');
 router.post('/login', login);
 router.post('/register', register);
 router.get('/', getAll);
-router.get('/current', getCurrent);
-router.put('/:_id', update);
+router.post('/getPrefById', getPrefById);
+router.post('/setPref', setPref);
 router.delete('/:_id', _delete);
 
 module.exports = router;
@@ -49,8 +49,8 @@ function getAll(req, res) {
         });
 }
 
-function getCurrent(req, res) {
-    userService.getById(req.user.sub)
+function getPrefById(req, res) {
+    userService.getPrefById(req.body.username)
         .then(function (user) {
             if (user) {
                 res.send(user);
@@ -63,10 +63,14 @@ function getCurrent(req, res) {
         });
 }
 
-function update(req, res) {
-    userService.update(req.params._id, req.body)
-        .then(function () {
-            res.sendStatus(200);
+function setPref(req, res) {
+    userService.setPref(req.body)
+        .then(function (user) {
+            if (user) {
+                res.send(user);
+            } else {
+                res.sendStatus(404);
+            }
         })
         .catch(function (err) {
             res.status(400).send(err);
