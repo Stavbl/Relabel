@@ -1,7 +1,8 @@
-var config = require('config.json');
-var express = require('express');
-var router = express.Router();
-var trackService = require('services/track.service');
+var express       = require('express'),
+    router        = express.Router(),
+    userService   = require('../services/user.service');
+    trackService  = require('../services/track.service');
+
 
 // routes
 router.post('/getTracksByPref', getTracksByPref);
@@ -9,7 +10,8 @@ router.post('/getTracksByPref', getTracksByPref);
 module.exports = router;
 
 function getTracksByPref(req, res) {
-    trackService.getTracksByPref(req.body.id)
+    var pref = userService.getPrefById(req.body.id);
+    trackService.getTracksByPref(pref)
         .then(function (tracks) {
             if (tracks) {
                 // successful

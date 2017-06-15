@@ -1,69 +1,57 @@
-const consts      = require('../consts'),
-      mongoose    = require('mongoose'),
-      ObjectId    = require('mongodb').ObjectID;
+const ObjectId = require('mongodb').ObjectID;
+var Track = require('../models/track');
 
-const conn = mongoose.connection;
-var User = require('../models/track');
-
-class TrackController {
-
-  connectToDB() {
-    mongoose.connect(consts.MLAB_KEY, function(err){
-      if (err) {
-        console.err(err);
-      } else {
-        console.log('Connected');
+exports.getTracksByPref = function(pref) {
+  console.log("Trace : getTracksByPref("+pref+")");
+  return new Promise((resolve, reject) => {
+    var genre;
+    var genreTotalVal = 0;
+    for(let gen in pref) {
+      console.log("type of genre.value: " + typeof(gen.value));
+      if(gen.value > 0) {
+        genre.push(gen);
+        genreTotalVal += gen.value;
       }
-    });
-  }
-
-  getTracksByPref(id) {
-    console.log("Trace : getTracksByPref("+id+")");
-    var user = getUserById(id);
-    return new Promise((resolve, reject) => {
-      var genre[];
-      for(let gen in user.preferences.genre) {
-        if(gen.value > 0)
-          genre.push(gen);
-      }
-      var conditions = {genre:{$in:genre}};
-      Track.find(conditions,
-        (err, tracks) => {
-          if(err) {
-            reject({"error": err});
-            console.log('STATUS: FAILED');
-          }
-          console.log('STATUS: SUCCESS');
-          if(!tracks.length) {
-            console.log("info : there are no users who match this condition");
-            resolve({"info": "there are no users who match this condition"});
-          }
-          resolve(tracks);
-        });
-    });
-  }
-  getUserById(id) {
-    console.log("Trace : getUserById("+id+")");
-    this.connectToDB();
-    return new Promise((resolve, reject) => {
-      User.find({_id: ObjectId(id)},
-        (err, user) => {
-          if(err) {
-            reject({"error": err});
-            console.log('STATUS: FAILED');
-          }
-          console.log('STATUS: SUCCESS');
-          if(!user.length) {
-            console.log("info : there are no users who got this id");
-            resolve({"info": "there are no users who got this id"});
-          }
-          resolve(user);
-        });
-    });
-  }
+    }
+    var conditions = {genre:{$in:genre}};
+    Track.find(conditions,
+      (err, tracks) => {
+        if(err) {
+          reject({"error": err});
+          console.log('STATUS: FAILED');
+        }
+        console.log('STATUS: SUCCESS');
+        if(!tracks.length) {
+          console.log("info : there are no users who match this condition");
+          resolve({"info": "there are no users who match this condition"});
+        }
+        // make the precenteges to pull tracks
+        var retTracks = [];
+        for(let g in genre) {
+          retTracks.concat(randomizeTracksByGenre(tracks, g.name, g.value/genreTotalVal ));
+        }
+        resolve(retTracks);
+      });
+  });
 }
-
-module.exports = function() {
-  var trackController = new TrackController();
-  return trackController;
+randomizeTracksByGenre = function(tracks,genre,precent) {
+  var newTracks = [];
+  for(let t in tracks) {
+    for(let g in t.genre) {
+      if(g === genre)
+        newTracks.push(t);
+    }
+  } // newTracks got all tracks from genre
+  var numOfTracks = Math.floor(precent*10);
+  if(newTracks.length < numOfTracks) {
+    return newTracks;
+  }
+  else {
+    for(let i=0; i<numOfTracks; i++) {
+      let index = Math.floor(Math.random()*tracks.length);
+      let track = tracks[index];
+      tracks.slice(index,1);
+    }
+  }
+  var item = items[Math.floor(Math.random()*items.length)];
 }
