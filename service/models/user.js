@@ -1,17 +1,21 @@
 var mongoose = require('mongoose'),
     schema = mongoose.Schema,
     userSchema = new schema({
-      user_name:  {type:String, index:1, required:true, unique:true},
+      username:  {type:String, index:1, required:true, unique:true},
       password:   {type:String, required:true},
       email:      {type:String, required:true},
-      first_name: {type:String, required:true},
-      last_name:  {type:String, required:true},
-      settings:   {
-        login_alerts: {type:Boolean, required:true},
-        recognized_devices: [String],
-        recognized_devices_length: Number,
-        phone_to_aproove_password_change: String
-      }
+      preferences:   [
+        {detriot: Number},
+        {hard: Number},
+        {dance: Number},
+        {minimal: Number},
+        {classic: Number},
+        {house: Number},
+        {vgm: Number},
+        {hard_acid: Number},
+        {electro: Number}
+      ],
+      playlists: []
     });
 
 var User = mongoose.model('User', userSchema);
