@@ -19,11 +19,14 @@ exports.login = function(username, password){
             console.log('STATUS: FAILED');
           }
           console.log('STATUS: SUCCESS');
-          if(!user.length) {
+          if(!user) {
             console.log("info : wrong username");
-            resolve({"info": " wrong username"});
+            return resolve({"info": " wrong username"});
           }
-          if(!user.validPassword(password)) {
+          console.log(user.password);
+          console.log(password);
+
+          if(!user.password === password) {
             console.log("info : wrong password");
             resolve({"info": " wrong password"});
           }
