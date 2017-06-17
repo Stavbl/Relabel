@@ -2,11 +2,15 @@ const express = require('express'),
     app = express(),
     user = require('./controllers/userController'),
     bodyParser = require('body-parser'),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 3000,
+    session = require('express-session');
+
+// app.use(session({secret: 'ssshhhhh'}));
 app.set('port',port);
 app.use('/', express.static('./public'));//for API
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 
 app.use(
     (req,res,next) => {

@@ -1,15 +1,53 @@
-var config = require('../consts.js');
 var express = require('express');
 var router = express.Router();
 var userService = require('../services/user.service');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+var User = require('../models/user');
+
+router.use(cookieParser());
+router.use(session({
+  cookieName: 'session',
+  secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+  httpOnly: true,
+  secure: true,
+  ephemeral: true
+}));
+router.use(function(req, res, next) {
+  if (req.session && req.session.user) {
+    userService.getUser(req.session.user.username)
+    .then(function(user){
+      if (user) {
+        console.log("in use");
+        req.user = user;
+        delete req.user.password; // delete the password from the session
+        req.session.user = user;  //refresh the session value
+        res.locals.user = user;
+      }
+      // finishing processing the middleware and run the route
+      next();
+    })
+    .catch(function (err) {
+            res.status(400).send(err);
+        });
+  }
+  else 
+    next();
+});
 
 // routes
 router.post('/login', login);
 router.post('/register', register);
 router.get('/', getAll);
-router.post('/getPrefById', getPrefById);
-router.post('/setPref', setPref);
+router.get('/logout', logout);
+router.get('/getPrefById', checkSignIn, getPrefById);
+router.post('/setPref', checkSignIn, setPref);
 router.delete('/:_id', _delete);
+router.get('/login', function(req, res){
+   res.send('login page');
+});
 
 module.exports = router;
 
@@ -18,6 +56,8 @@ function login(req, res) {
         .then(function (user) {
             if (user) {
                 // authentication successful
+                req.session.user = user;
+                console.log(req.session.user.username);
                 res.send(user);
             } else {
                 // authentication failed
@@ -50,7 +90,7 @@ function getAll(req, res) {
 }
 
 function getPrefById(req, res) {
-    userService.getPrefById(req.body.username)
+    userService.getPrefById(req.session.user.username)
         .then(function (user) {
             if (user) {
                 res.send(user);
@@ -64,7 +104,7 @@ function getPrefById(req, res) {
 }
 
 function setPref(req, res) {
-    userService.setPref(req.body)
+    userService.setPref(req.session.user.username, req.body)
         .then(function (user) {
             if (user) {
                 res.send(user);
@@ -85,4 +125,20 @@ function _delete(req, res) {
         .catch(function (err) {
             res.status(400).send(err);
         });
+}
+
+function checkSignIn(req, res, next){
+   if (!req.user) {
+    res.redirect('/users/login');
+  } else {
+    next();
+  }
+}
+
+function logout(req, res){
+   req.session.destroy(function(){
+        sess=null;
+      console.log("user logged out.")
+   });
+   res.redirect('/users/login');
 }
