@@ -4,12 +4,10 @@ const express    = require('express'),
       bodyParser = require('body-parser'),
       port       = process.env.PORT || 3000;
 
-
 app.set('port',port);
 app.use('/', express.static('./public')); //for API
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 
 app.use(
     (req,res,next) => {
