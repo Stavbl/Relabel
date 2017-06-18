@@ -1,15 +1,18 @@
-const mongoose = require('mongoose');
-var User = require('../models/user');
-var jwt = require('jsonwebtoken');
-var consts = require('../consts.js');
+const mongoose = require('mongoose'),
+      ObjectId = require('mongodb').ObjectID;
+var User       = require('../models/user');
+var jwt        = require('jsonwebtoken');
+var consts     = require('../consts.js');
 
 var service = {};
 
-service.getData = getData;
-service.login = login;
-service.getPrefById = getPrefById;
-service.setPref = setPref;
-service.getUser = getUser;
+service.getData            = getData;
+service.login              = login;
+service.getUserById        = getUserById;
+service.getPrefById        = getPrefById;
+service.setPref            = setPref;
+service.getUser            = getUser;
+service.addTrackToPlaylist = addTrackToPlaylist;
 // service.update = update;
 // service.delete = _delete;
 
@@ -25,6 +28,23 @@ function getData(req,res){
     });
 }
 
+function getUserById(userId){
+  return new Promise((resolve, reject) => {
+    User.findOne({_id: ObjectId(userId)},
+        (err, user) => {
+          if(err) {
+            reject(err);
+            console.log('getUser STATUS: FAILED');
+          }
+          console.log('getUser STATUS: SUCCESS');
+          if(!user) {
+            console.log("info : wrong username");
+            return resolve(err);
+          }
+          resolve(user);
+        });
+  });
+}
 function getUser(username){
   return new Promise((resolve, reject) => {
     User.findOne({username: username},
@@ -86,7 +106,7 @@ function getPrefById(username){
         });
     });
 }
-function setPref(username, userParam) { 
+function setPref(username, userParam) {
     return new Promise((resolve, reject) => {
           var conditions = {username: username},
           update = {'preferences.0.value':userParam.detriot,
@@ -101,7 +121,7 @@ function setPref(username, userParam) {
                     },
           opts = {new:true};
 
-          User.update(conditions, update, opts, 
+          User.update(conditions, update, opts,
             (err) => {
                 if(err) {
                   reject({"error": err});
@@ -115,4 +135,30 @@ function setPref(username, userParam) {
             });
           resolve();
         });
+}
+
+function addTrackToPlaylist(trackId, userId, playlistName) {
+  console.log('Trace: addTrackToPlaylist('+trackId+','+userId+','+playlistName+')');
+  return new Promise((resolve, reject) => {
+    let user = getUserById(userId).then((user)=> {
+      user.playlists.forEach(function(pl) {
+        console.log(pl);
+        if(pl.name === playlistName){
+          pl.tracks.push(trackId);
+        }
+      });
+      user.save((err) => {
+        if(err){
+          console.log(`err: ${err}`);
+          resolve(false);
+          return;
+        }
+        else
+          console.log(`Saved document: ${JSON.stringify(user)}`);
+    });
+    resolve(true);
+    // let conditions = {_id: ObjectId(userId) , playlists: playlistName};
+    // let update = {}
+    });
+  });
 }

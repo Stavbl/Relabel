@@ -10,7 +10,12 @@ var mongoose = require('mongoose'),
           value: Number
         }
       ],
-      playlists: []
+      playlists: [
+        {
+          name: String,
+          tracks: [String]
+        }
+      ]
     });
 
 var User = mongoose.model('User', userSchema);

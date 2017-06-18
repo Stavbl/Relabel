@@ -76,10 +76,3 @@ randomizeTracksByGenre = function(tracks,genre,precent) {
   }
   return retTracks;
 }
-
-exports.addTrackToPlaylist = function(trackId, userId, plalistName) {
-  console.log('Trace: addTrackToPlaylist('+trackId+','+userId+','+plalistName+')');
-  return new Promise((resolve, reject) => {
-    let conditions = {_id: ObjectId(userId) , playlists: plalistName};
-  });
-}
