@@ -2,56 +2,84 @@ const ObjectId = require('mongodb').ObjectID;
 var Track = require('../models/track');
 
 exports.getTracksByPref = function(pref) {
-  console.log("Trace : getTracksByPref("+pref+")");
+  console.log("Trace : getTracksByPref({})");
   return new Promise((resolve, reject) => {
-    var genre;
+    var genreObjectArray = [];
+    var genreNameArry = [];
     var genreTotalVal = 0;
-    for(let gen in pref) {
-      console.log("type of genre.value: " + typeof(gen.value));
+    pref.forEach(function(gen){
       if(gen.value > 0) {
-        genre.push(gen);
-        genreTotalVal += gen.value;
+          genreNameArry.push(gen.name);
+          genreObjectArray.push(gen);
+          genreTotalVal += gen.value;
       }
-    }
-    var conditions = {genre:{$in:genre}};
+    });
+    var conditions = {genre:{$in:genreNameArry}};
     Track.find(conditions,
       (err, tracks) => {
         if(err) {
           reject({"error": err});
           console.log('STATUS: FAILED');
+          return;
         }
         console.log('STATUS: SUCCESS');
         if(!tracks.length) {
-          console.log("info : there are no users who match this condition");
-          resolve({"info": "there are no users who match this condition"});
+          console.log("info : there are no tracks who match this condition");
+          resolve({"info": "there are no tracks who match this condition"});
+          return;
         }
+        console.log("All Tracks From DB:  " + tracks);
         // make the precenteges to pull tracks
         var retTracks = [];
-        for(let g in genre) {
-          retTracks.concat(randomizeTracksByGenre(tracks, g.name, g.value/genreTotalVal ));
-        }
+        genreObjectArray.forEach(function(goa) {
+          // console.log("track.service:36 - g = " + goa );
+          let arrayToConcat = randomizeTracksByGenre(tracks, goa.name, goa.value/genreTotalVal);
+          console.log("arrayToConcat: " + arrayToConcat);
+          retTracks = retTracks.concat(arrayToConcat);
+        });
+        console.log("retTracks:  " + retTracks);
         resolve(retTracks);
+        return;
       });
   });
 }
+
 randomizeTracksByGenre = function(tracks,genre,precent) {
-  var newTracks = [];
-  for(let t in tracks) {
-    for(let g in t.genre) {
-      if(g === genre)
-        newTracks.push(t);
-    }
-  } // newTracks got all tracks from genre
-  var numOfTracks = Math.floor(precent*10);
-  if(newTracks.length < numOfTracks) {
-    return newTracks;
+  let tracksByGenre = [];
+  let retTracks     = [];
+  console.log("randomizing: "+ genre + ", with precent: "+ precent);
+  tracks.forEach(function(t){
+    // console.log("track.service:47 - " + t);
+    t.genre.forEach(function(g) {
+      if(g === genre) {
+        tracksByGenre.push(t);
+        console.log("tracksByGenre pushed: " + t);
+      }
+    });
+  }); // tracksByGenre got all tracks from this genre
+  let numOfTracks = Math.floor(precent*10);
+  console.log("numOfTracks in genre - " + genre + "is: " + numOfTracks);
+  console.log("tracksByGenre: " + tracksByGenre.length);
+  if(tracksByGenre.length < numOfTracks) {
+    if(tracksByGenre.length >= 1)
+      console.log("tracksByGenre returned with:  " + tracksByGenre);
+    return tracksByGenre;
   }
   else {
+    console.log("else");
     for(let i=0; i<numOfTracks; i++) {
-      let index = Math.floor(Math.random()*tracks.length);
-      let track = tracks[index];
-      tracks.slice(index,1);
+      let index = Math.floor(Math.random()*tracksByGenre.length);
+      let track = tracksByGenre[index];
+      tracksByGenre.slice(index,1);
+      retTracks.push(track);
     }
   }
-  var item = items[Math.floor(Math.random()*items.length)];
+  return retTracks;
+}
+
+exports.addTrackToPlaylist = function(trackId, userId, plalistName) {
+  console.log('Trace: addTrackToPlaylist('+trackId+','+userId+','+plalistName+')');
+  return new Promise((resolve, reject) => {
+    let conditions = {_id: ObjectId(userId) , playlists: plalistName};
+  });
 }

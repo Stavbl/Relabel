@@ -5,24 +5,10 @@ var mongoose = require('mongoose'),
       password:   {type:String, required:true},
       email:      {type:String, required:true},
       preferences:   [
-        {name: String,
-         value: Number},
-        {name: String,
-         value: Number},
-        {name: String,
-         value: Number},
-        {name: String,
-         value: Number},
-        {name: String,
-         value: Number},
-        {name: String,
-         value: Number},
-        {name: String,
-         value: Number},
-        {name: String,
-         value: Number},
-        {name: String,
-         value: Number}
+        {
+          name: String,
+          value: Number
+        }
       ],
       playlists: []
     });
