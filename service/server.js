@@ -3,12 +3,16 @@ const express    = require('express'),
       user       = require('./controllers/userController'),
       bodyParser = require('body-parser'),
       port       = process.env.PORT || 3000;
+var expressJwt = require('express-jwt');
+var session = require('express-session');
+var consts = require('./consts.js');
 
 
 app.set('port',port);
 app.use('/', express.static('./public')); //for API
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(session({ secret: consts.secret, resave: false, saveUninitialized: true }));
 
 
 app.use(

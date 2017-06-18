@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 var User = require('../models/user');
+var jwt = require('jsonwebtoken');
+var consts = require('../consts.js');
 
 var service = {};
 
@@ -59,7 +61,7 @@ function login(username, password){
             return resolve({"info": " wrong password"});
           }
 
-          resolve(user);
+          resolve(jwt.sign({ sub: user._id }, consts.secret));
         });
     });
 }
