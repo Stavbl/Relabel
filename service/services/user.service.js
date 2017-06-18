@@ -61,7 +61,11 @@ function login(username, password){
             return resolve({"info": " wrong password"});
           }
 
-          resolve(jwt.sign({ sub: user._id }, consts.secret));
+          resolve({
+                _id: user._id,
+                username: user.username,
+                token: jwt.sign({ sub: user._id }, consts.secret)
+            });
         });
     });
 }
