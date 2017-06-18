@@ -35,7 +35,6 @@ function addTrackToPlaylist(req, res) {
   blablaService.addTrackToPlaylist(trackId, userId, plalistName)
     .then(function(status) {
         res.status(200).json({"status": status});
-      }
     })
     .catch(function (err) {
         res.status(400).send(err);
