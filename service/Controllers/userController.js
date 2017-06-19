@@ -101,12 +101,12 @@ function getPrefById(req, res) {
 function setPref(req, res) {
     userService.setPref(req.body.id, req.body.update)
         .then(function (user) {
-          res.sendStatus(200);
-            // if (user) {
-            //     res.send(user);
-            // } else {
-            //     res.sendStatus(404);
-            // }
+          // res.sendStatus(200);
+            if (user) {
+                res.send(user);
+            } else {
+                res.sendStatus(404);
+            }
         })
         .catch(function (err) {
             res.status(400).send(err);

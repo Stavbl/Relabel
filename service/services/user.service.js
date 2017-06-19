@@ -136,7 +136,7 @@ function setPref(username, userParam) {
             }
 
             });
-          resolve();
+          resolve(obj);
         });
 }
 
