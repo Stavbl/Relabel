@@ -28,11 +28,9 @@ exports.getTracksByPref = function(pref) {
           resolve({"info": "there are no tracks who match this condition"});
           return;
         }
-        console.log("All Tracks From DB:  " + tracks);
         // make the precenteges to pull tracks
         var retTracks = [];
         genreObjectArray.forEach(function(goa) {
-          // console.log("track.service:36 - g = " + goa );
           let arrayToConcat = randomizeTracksByGenre(tracks, goa.name, goa.value/genreTotalVal);
           console.log("arrayToConcat: " + arrayToConcat);
           retTracks = retTracks.concat(arrayToConcat);
@@ -49,11 +47,9 @@ randomizeTracksByGenre = function(tracks,genre,precent) {
   let retTracks     = [];
   console.log("randomizing: "+ genre + ", with precent: "+ precent);
   tracks.forEach(function(t){
-    // console.log("track.service:47 - " + t);
     t.genre.forEach(function(g) {
       if(g === genre) {
         tracksByGenre.push(t);
-        console.log("tracksByGenre pushed: " + t);
       }
     });
   }); // tracksByGenre got all tracks from this genre

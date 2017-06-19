@@ -26,7 +26,6 @@ function getTracksByPref(req, res) {
             });
       });
 }
-<<<<<<< HEAD
 
 function addTrackToPlaylist(req, res) {
   let trackId     = req.body.trackId;
@@ -40,5 +39,3 @@ function addTrackToPlaylist(req, res) {
         res.status(400).send(err);
     });
 }
-=======
->>>>>>> 8b5790f475a365a7d85859c9eb63cb1b4dc0d634

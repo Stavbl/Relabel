@@ -90,21 +90,22 @@ function login(username, password){
     });
 }
 function getPrefById(username){
-    return new Promise((resolve, reject) => {
-      User.findOne({username: username},
-        (err, user) => {
-          if(err) {
-            console.log('getPrefById STATUS: FAILED');
-            reject({"error": err});
-          }
-          console.log('getPrefById STATUS: SUCCESS');
-          if(!user) {
-            console.log("info : wrong username");
-            return resolve({"info": " wrong username"});
-          }
-          resolve(user.preferences);
-        });
-    });
+  console.log("Trace: getPrefById("+username+")");
+  return new Promise((resolve, reject) => {
+    User.findOne({username: username},
+      (err, user) => {
+        if(err) {
+          console.log('getPrefById STATUS: FAILED');
+          reject({"error": err});
+        }
+        console.log('getPrefById STATUS: SUCCESS');
+        if(!user) {
+          console.log("info : wrong username");
+          return resolve({"info": " wrong username"});
+        }
+        resolve(user.preferences);
+      });
+  });
 }
 function setPref(username, userParam) {
     return new Promise((resolve, reject) => {
