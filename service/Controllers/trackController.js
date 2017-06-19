@@ -26,6 +26,10 @@ function getTracksByPref(req, res) {
             });
       });
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ccfc4740947c52f831adfb9ba8adb465b990e4e4
 
 function addTrackToPlaylist(req, res) {
   let trackId     = req.body.trackId;

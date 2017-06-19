@@ -15,6 +15,7 @@ export class LoginAppComponent implements OnInit {
     model: any = {};
     loading = false;
     returnUrl: string;
+    objectData : User;
     private user : User;
  
     constructor(
@@ -35,14 +36,18 @@ export class LoginAppComponent implements OnInit {
         this.loading = true;
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
-                (response : User) => {
-                    this.user = response;
-                    console.log(this.user.username);
+                // function(response) { console.log("Success Response" + response)},
+                // function(error) { console.log("Error happened" + error)},
+                // function() { console.log("the subscription is completed")}
+
+                data => {
+                    console.log(data);
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
                     this.alertService.error(error);
                     this.loading = false;
-                });
+                }
+            );
     }
 }
