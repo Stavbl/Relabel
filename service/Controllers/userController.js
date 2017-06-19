@@ -86,9 +86,9 @@ function register(req, res) {
 
 function getPrefById(req, res) {
     userService.getPrefById(req.body.id)
-        .then(function (user) {
-            if (user) {
-                res.send(user);
+        .then(function (pref) {
+            if (pref) {
+                res.send(pref);
             } else {
                 res.sendStatus(404);
             }
@@ -100,10 +100,10 @@ function getPrefById(req, res) {
 
 function setPref(req, res) {
     userService.setPref(req.body.id, req.body.update)
-        .then(function (user) {
+        .then(function (pref) {
           // res.sendStatus(200);
-            if (user) {
-                res.send(user);
+            if (pref) {
+                res.send(pref);
             } else {
                 res.sendStatus(404);
             }

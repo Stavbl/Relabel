@@ -51,10 +51,6 @@ export class PreferencesComponent implements OnInit {
       this.newPrefs.push(electro); 
       console.log(JSON.stringify(this.newPrefs)); 
       this.updatePref() 
-      // const newFairyTail = 
-      //   new Fairytail(val.nameInput,
-      //                 val.likesInput);
-      // this.slService.onFTAdded(newFairyTail);  }
   }
   updatePref() {
     this.prefservice.setPrefById("Tale of Us",this.newPrefs).then((prf) => {
