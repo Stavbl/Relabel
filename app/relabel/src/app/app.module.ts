@@ -12,13 +12,15 @@ import {RouterModule } from '@angular/router';
 import { TrackService } from "app/track.service";
 import { PrefService } from "./preferences/pref.service";
 import { AppRoutingModule } from './app-routing.module';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    PreferencesComponent
+    PreferencesComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
