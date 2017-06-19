@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Routes,RouterModule, Router} from '@angular/router';
 import { PrefService } from "./pref.service";
 import {NgForm} from '@angular/forms';
 import { Pref } from "./pref";
@@ -12,7 +13,8 @@ export class PreferencesComponent implements OnInit {
     pref: Pref[];
     newPrefs: Pref[] = [];
 
-  constructor(private prefservice: PrefService) { }
+  constructor(private prefservice: PrefService,
+              public router: Router) { }
 
   ngOnInit() {
     this.prefservice.getPrefById("Tale of Us").then((prf) => {
@@ -55,6 +57,7 @@ export class PreferencesComponent implements OnInit {
   updatePref() {
     this.prefservice.setPrefById("Tale of Us",this.newPrefs).then((prf) => {
       this.pref = prf; 
+      this.router.navigate(['./dashboard'])
     });
   }
 }
