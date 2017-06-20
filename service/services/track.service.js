@@ -53,7 +53,7 @@ randomizeTracksByGenre = function(tracks,genre,precent) {
       }
     });
   }); // tracksByGenre got all tracks from this genre
-  let numOfTracks = Math.floor(precent*10);
+  let numOfTracks = Math.round(precent*10);
   console.log("numOfTracks in genre - " + genre + "is: " + numOfTracks);
   console.log("tracksByGenre: " + tracksByGenre.length);
   if(tracksByGenre.length < numOfTracks) {
