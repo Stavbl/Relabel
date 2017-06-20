@@ -3,6 +3,7 @@ import {Routes,RouterModule, Router} from '@angular/router';
 import { PrefService } from "./pref.service";
 import {NgForm} from '@angular/forms';
 import { Pref } from "./pref";
+import { User } from "../login/user";
 
 @Component({
   selector: 'app-preferences',
@@ -12,12 +13,14 @@ import { Pref } from "./pref";
 export class PreferencesComponent implements OnInit {
     pref: Pref[];
     newPrefs: Pref[] = [];
+    user: User;
 
   constructor(private prefservice: PrefService,
               public router: Router) { }
 
   ngOnInit() {
-    this.prefservice.getPrefById("Tale of Us").then((prf) => {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.prefservice.getPrefById(this.user.username).then((prf) => {
       this.pref = prf; 
     });
   }
@@ -55,7 +58,7 @@ export class PreferencesComponent implements OnInit {
       this.updatePref() 
   }
   updatePref() {
-    this.prefservice.setPrefById("Tale of Us",this.newPrefs).then((prf) => {
+    this.prefservice.setPrefById(this.user.username,this.newPrefs).then((prf) => {
       this.pref = prf; 
       this.router.navigate(['./dashboard'])
     });
