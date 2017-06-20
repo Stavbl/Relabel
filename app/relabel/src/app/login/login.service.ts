@@ -13,4 +13,8 @@ export class LoginService {
   login(username:string, password:string): Promise<User> { 
     return this.http.post(this.base_url + '/login',{username,password}).toPromise().then((res) => res.json() as User);
   }
+  logout() {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+    }
 }

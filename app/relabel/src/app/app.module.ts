@@ -15,6 +15,7 @@ import { TrackService } from "app/track.service";
 import { PrefService } from "./preferences/pref.service";
 import { LoginService } from "./login/login.service";
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './authGuard/auth.guard';
 
 
 
@@ -35,7 +36,8 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     TrackService,
     PrefService,
-    LoginService
+    LoginService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

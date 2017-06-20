@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrackService } from "app/track.service";
 import { Track } from "app/track";
+import { User } from "../login/user";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,11 +11,13 @@ import { Track } from "app/track";
 export class DashboardComponent implements OnInit {
   tracks: Track[];
   rows: Track[][] = [];
+  user: User;
 
   constructor(private tracktService: TrackService) { }
 
   ngOnInit() {
-    this.tracktService.getTracksByPref("Tale of Us").then((trk) => {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.tracktService.getTracksByPref(this.user.username).then((trk) => {
       this.tracks = trk;
       this.rows = [];
       for (let i = 0; i < this.numRows(); i++) {

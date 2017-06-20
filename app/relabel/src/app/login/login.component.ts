@@ -16,14 +16,19 @@ export class LoginComponent implements OnInit {
               public router: Router) { }
 
   ngOnInit() {
+      this.loginservice.logout();
   }
   login(form:NgForm){
       const val = form.value;
       console.log(val);   
       this.loginservice.login(val.username,val.password).then((usr) => {
-          console.log(usr);
-      this.user = usr; 
-      console.log(this.user.username);
+       if (usr && usr.token) {
+            console.log("inside");
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('currentUser', JSON.stringify(usr));
+            this.user = JSON.parse(localStorage.getItem('currentUser'));
+            console.log(this.user.username);
+            }
       this.router.navigate(['./dashboard'])
     }); 
   }
