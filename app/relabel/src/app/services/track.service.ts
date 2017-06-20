@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class TrackService {
 
-  private base_url: String = 'https://relabel.herokuapp.com/tracks';
+  private base_url: String = 'https://relabel--service.herokuapp.com/tracks';
 
   constructor(private http: Http) { }
 

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class PrefService {
 
-  private base_url: String = 'https://relabel.herokuapp.com/users';
+  private base_url: String = 'https://relabel--service.herokuapp.com/users';
 
   constructor(private http: Http) { }
 
