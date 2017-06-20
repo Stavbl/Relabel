@@ -109,16 +109,18 @@ function getPrefById(username){
 }
 function setPref(username, userParam) {
     return new Promise((resolve, reject) => {
+          var obj = JSON.parse(userParam);
+          // console.log(obj[1]);
           var conditions = {username: username},
-          update = {'preferences.0.value':userParam.detriot,
-                    'preferences.1.value':userParam.hard,
-                    'preferences.2.value':userParam.dance,
-                    'preferences.3.value':userParam.minimal,
-                    'preferences.4.value':userParam.classic,
-                    'preferences.5.value':userParam.house,
-                    'preferences.6.value':userParam.vgm,
-                    'preferences.7.value':userParam.hard_acid,
-                    'preferences.8.value':userParam.electro
+          update = {'preferences.0.value':obj[0].value,
+                    'preferences.1.value':obj[1].value,
+                    'preferences.2.value':obj[2].value,
+                    'preferences.3.value':obj[3].value,
+                    'preferences.4.value':obj[4].value,
+                    'preferences.5.value':obj[5].value,
+                    'preferences.6.value':obj[6].value,
+                    'preferences.7.value':obj[7].value,
+                    'preferences.8.value':obj[8].value,
                     },
           opts = {new:true};
 
@@ -126,7 +128,7 @@ function setPref(username, userParam) {
             (err) => {
                 if(err) {
                   reject({"error": err});
-                  console.log('updatePREF STATUS: FAILED');
+                  console.log('updatePREF STATUS: FAILED' + err);
               }
 
             else{
@@ -134,7 +136,7 @@ function setPref(username, userParam) {
             }
 
             });
-          resolve();
+          resolve(obj);
         });
 }
 

@@ -44,7 +44,8 @@ router.post('/login', login);
 router.post('/register', register);
 router.get('/logout', logout);
 router.get('/getPrefById', checkSignIn, getPrefById);
-router.post('/setPref', checkSignIn, setPref);
+router.post('/getPrefById', getPrefById);
+router.post('/setPref', setPref);
 router.post('/addTrackToPlaylist', addTrackToPlaylist);
 router.delete('/:_id', _delete);
 router.get('/login', function(req, res){
@@ -84,10 +85,10 @@ function register(req, res) {
 }
 
 function getPrefById(req, res) {
-    userService.getPrefById(req.session.user.username)
-        .then(function (user) {
-            if (user) {
-                res.send(user);
+    userService.getPrefById(req.body.id)
+        .then(function (pref) {
+            if (pref) {
+                res.send(pref);
             } else {
                 res.sendStatus(404);
             }
@@ -98,10 +99,11 @@ function getPrefById(req, res) {
 }
 
 function setPref(req, res) {
-    userService.setPref(req.session.user.username, req.body)
-        .then(function (user) {
-            if (user) {
-                res.send(user);
+    userService.setPref(req.body.id, req.body.update)
+        .then(function (pref) {
+          // res.sendStatus(200);
+            if (pref) {
+                res.send(pref);
             } else {
                 res.sendStatus(404);
             }
