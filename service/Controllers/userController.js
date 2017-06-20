@@ -63,10 +63,10 @@ function login(req, res) {
               req.session.token = user.token;
               console.log(req.session.user.username);
               console.log(req.session.token);
-              res.send({ user: user });
+              res.send(user);
             } else {
                 // authentication failed
-                res.status(401).send('Username or password is incorrect');
+                res.status(401).send('Username or password is f incorrect');
             }
         })
         .catch(function (err) {
