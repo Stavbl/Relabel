@@ -2,81 +2,20 @@
     <h1>Hi {{user?.username}}!</h1>
     <p><a [routerLink]="['/login']">Logout</a></p>
 </div>
-<div class="row" >
-    <div *ngFor="let pf of pref" class="col-sm-4">
-        <h2>{{pf.name}} {{pf.value}}</h2>
-    </div>
-</div>
 
-<form (ngSubmit)="setPref(f)" #f="ngForm">
-  <div class="row">
-      <div class="col-sm-5 form-group">
-        <label for="amount">detriot:</label>
-        <input type="number" id="detriot" 
+<form (ngSubmit)="updatePref()" #f="ngForm">
+<div class="row" >
+     <div *ngFor="let pf of pref" class="col-sm-5 form-group">
+        <label for="amount">{{pf.name}}:</label>
+        <input type="number" [id]="pf.name" 
             class="form-control"
-            name="detriot"
-            ngModel>
-      </div>
-      <div class="col-sm-5 form-group">
-        <label for="amount">hard:</label>
-        <input type="number" id="hard" 
-            class="form-control"
-            name="hard"
-            ngModel>
-      </div>
-      <div class="col-sm-5 form-group">
-        <label for="amount">dance:</label>
-        <input type="number" id="dance" 
-            class="form-control"
-            name="dance"
-            ngModel>
-      </div>
-      <div class="col-sm-5 form-group">
-        <label for="amount">minimal:</label>
-        <input type="number" id="minimal" 
-            class="form-control"
-            name="minimal"
-            ngModel>
-      </div>
-      <div class="col-sm-5 form-group">
-        <label for="amount">classic:</label>
-        <input type="number" id="classic" 
-            class="form-control"
-            name="classic"
-            ngModel>
-      </div>
-      <div class="col-sm-5 form-group">
-        <label for="amount">house:</label>
-        <input type="number" id="house" 
-            class="form-control"
-            name="house"
-            ngModel>
-      </div>
-      <div class="col-sm-5 form-group">
-        <label for="amount">vgm:</label>
-        <input type="number" id="vgm" 
-            class="form-control"
-            name="vgm"
-            ngModel>
-      </div>
-      <div class="col-sm-5 form-group">
-        <label for="amount">hard_acid:</label>
-        <input type="number" id="hard_acid" 
-            class="form-control"
-            name="hard_acid"
-            ngModel>
-      </div>
-      <div class="col-sm-5 form-group">
-        <label for="amount">electro:</label>
-        <input type="number" id="electro" 
-            class="form-control"
-            name="electro"
-            ngModel>
+            [name]="pf.name"
+            [(ngModel)]="pf.value">
       </div>
       <div class="row">
         <div class="col-xs-12">
           <button class="btn btn-success" >update</button>
         </div>
       </div>
-  </div>
+</div>
 </form>

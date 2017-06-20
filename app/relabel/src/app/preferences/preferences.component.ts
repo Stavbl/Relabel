@@ -12,7 +12,6 @@ import { User } from "../models/user";
 })
 export class PreferencesComponent implements OnInit {
     pref: Pref[];
-    newPrefs: Pref[] = [];
     user: User;
 
   constructor(private prefservice: PrefService,
@@ -24,41 +23,9 @@ export class PreferencesComponent implements OnInit {
       this.pref = prf; 
     });
   }
-  setPref(form:NgForm){
-      const val = form.value;
-      console.log(val);
-      const detriot = 
-          new Pref("detriot", val.detriot);
-      this.newPrefs.push(detriot);   
-      const hard = 
-          new Pref("hard", val.hard);
-      this.newPrefs.push(hard);
-      const dance = 
-          new Pref("dance", val.dance);
-      this.newPrefs.push(dance);
-      const minimal = 
-          new Pref("minimal", val.minimal);
-      this.newPrefs.push(minimal);
-      const classic = 
-          new Pref("classic", val.classic);
-      this.newPrefs.push(classic);
-      const house = 
-          new Pref("house", val.house);
-      this.newPrefs.push(house);
-      const vgm = 
-          new Pref("vgm", val.vgm);
-      this.newPrefs.push(vgm);
-      const hard_acid = 
-          new Pref("hard_acid", val.hard_acid);
-      this.newPrefs.push(hard_acid);
-      const electro = 
-          new Pref("electro", val.electro);
-      this.newPrefs.push(electro); 
-      console.log(JSON.stringify(this.newPrefs)); 
-      this.updatePref() 
-  }
+
   updatePref() {
-    this.prefservice.setPrefById(this.user.username,this.newPrefs).then((prf) => {
+    this.prefservice.setPrefById(this.user.username,this.pref).then((prf) => {
       this.pref = prf; 
       this.router.navigate(['./dashboard'])
     });
