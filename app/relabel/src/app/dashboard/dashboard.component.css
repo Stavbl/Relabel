@@ -1,5 +1,4 @@
 .container {
-    width: 80%;
     padding: 100px 20px 20px 20px;
     border-radius: 4px 4px 4px 4px;
     background-color: #333333;
@@ -11,4 +10,9 @@
     border: 1px solid #000000;
     border-radius: 4px;
     padding: 4px;
+    min-height: 165px;
+    max-height: 165px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-left: 25px;
 }
