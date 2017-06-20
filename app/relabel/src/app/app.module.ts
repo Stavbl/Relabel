@@ -6,13 +6,16 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PreferencesComponent } from './preferences/preferences.component';
+import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './login/login.component';
 
 // Added imports
 import {RouterModule } from '@angular/router';
 import { TrackService } from "app/track.service";
 import { PrefService } from "./preferences/pref.service";
+import { LoginService } from "./login/login.service";
 import { AppRoutingModule } from './app-routing.module';
-import { HeaderComponent } from './header/header.component';
+
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import { HeaderComponent } from './header/header.component';
     AppComponent,
     DashboardComponent,
     PreferencesComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +35,7 @@ import { HeaderComponent } from './header/header.component';
   providers: [
     TrackService,
     PrefService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
