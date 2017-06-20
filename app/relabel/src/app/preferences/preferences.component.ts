@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Routes,RouterModule, Router} from '@angular/router';
-import { PrefService } from "./pref.service";
+import { PrefService } from "../services/pref.service";
 import {NgForm} from '@angular/forms';
-import { Pref } from "./pref";
-import { User } from "../login/user";
+import { Pref } from "../models/pref";
+import { User } from "../models/user";
 
 @Component({
   selector: 'app-preferences',

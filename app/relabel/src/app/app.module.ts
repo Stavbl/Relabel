@@ -11,9 +11,9 @@ import { LoginComponent } from './login/login.component';
 
 // Added imports
 import {RouterModule } from '@angular/router';
-import { TrackService } from "app/track.service";
-import { PrefService } from "./preferences/pref.service";
-import { LoginService } from "./login/login.service";
+import { TrackService } from "./services/track.service";
+import { PrefService } from "./services/pref.service";
+import { LoginService } from "./services/login.service";
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './authGuard/auth.guard';
 
