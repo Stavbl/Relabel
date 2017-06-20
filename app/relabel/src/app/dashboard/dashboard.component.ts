@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TrackService } from "app/track.service";
-import { Track } from "app/track";
-import { User } from "../login/user";
+import { TrackService } from "../services/track.service";
+import { Track } from "../models/track";
+import { User } from "../models/user";
 
 @Component({
   selector: 'app-dashboard',

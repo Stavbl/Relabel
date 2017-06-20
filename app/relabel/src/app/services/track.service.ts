@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, URLSearchParams } from '@angular/http';
-import { Track } from './track';
+import { Track } from '../models/track';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class TrackService {
 
-  private base_url: String = 'http://localhost:3000/tracks';
+  private base_url: String = 'https://relabel.herokuapp.com/tracks';
 
   constructor(private http: Http) { }
 

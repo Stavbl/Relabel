@@ -1,3 +1,4 @@
+
 <div class="container"> 
   <div class="row" *ngFor="let r of rows; let i=index">
     <div class="col-md-4" *ngFor="let t of r" >
@@ -8,4 +9,9 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="col-md-6 col-md-offset-3">
+    <h1>Hi {{user?.username}}!</h1>
+    <p><a [routerLink]="['/login']">Logout</a></p>
 </div>
