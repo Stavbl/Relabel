@@ -158,8 +158,6 @@ function addTrackToPlaylist(trackId, userId, playlistName) {
           console.log(`Saved document: ${JSON.stringify(user)}`);
     });
     resolve(true);
-    // let conditions = {_id: ObjectId(userId) , playlists: playlistName};
-    // let update = {}
     });
   });
 }

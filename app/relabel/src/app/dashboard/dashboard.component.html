@@ -1,9 +1,11 @@
-<div class="row" *ngFor="let r of rows; let i=index">
-  <div *ngFor="let t of r" class="col-sm-4">
-    <div class="contents">
-      <h2>{{t.name}}</h2>
-      <h3>{{t.artist}}</h3>
-      <h3>{{t.album}}</h3>
+<div class="container"> 
+  <div class="row" *ngFor="let r of rows; let i=index">
+    <div class="col-md-3" *ngFor="let t of r" >
+      <div class="dashboard_track">
+        <h3>Name:   {{t.name}}</h3>
+        <h4>Artist: {{t.artist}}</h4>
+        <h5>Album:  {{t.album}}</h5>
+      </div>
     </div>
   </div>
 </div>
