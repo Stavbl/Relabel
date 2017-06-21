@@ -89,6 +89,7 @@ function login(username, password){
         });
     });
 }
+// Todo: Change username to _id
 function getPrefById(username){
   console.log("Trace: getPrefById("+username+")");
   return new Promise((resolve, reject) => {
@@ -123,21 +124,17 @@ function setPref(username, userParam) {
                     'preferences.8.value':obj[8].value,
                     },
           opts = {new:true};
-
           User.update(conditions, update, opts,
             (err) => {
                 if(err) {
                   reject({"error": err});
                   console.log('updatePREF STATUS: FAILED' + err);
-              }
-
-            else{
-                console.log(`updatePREF STATUS: SUCCESS`);
-            }
-
+                } else{
+                  console.log(`updatePREF STATUS: SUCCESS`);
+                }
             });
           resolve(obj);
-        });
+    });
 }
 
 function addTrackToPlaylist(trackId, userId, playlistName) {

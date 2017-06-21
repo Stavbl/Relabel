@@ -20,9 +20,14 @@ app.use(
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers",
             "Origin, X-Requested-With, Content-Type, Accept");
-        res.set("Content-Type", "application/json");
         next();
 });
+
+app.get('/', (req,res) => {
+  console.log('Trace: API Page');
+  res.sendFile(__dirname + '/api/index.html');
+});
+
 /*** All routes ***/
 app.use('/users', require('./controllers/userController'));
 app.use('/tracks', require('./controllers/trackController'));
@@ -31,5 +36,5 @@ app.use('/tracks', require('./controllers/trackController'));
 //app.get('/bookstore/saveFairytailData', fairytail.saveData);
 app.listen(port,
     () => {
-        console.log(`listening on f port ${port}`);
+        console.log(`listening on port ${port}`);
 });

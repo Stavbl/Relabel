@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Relabel API</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1>Relabel-Service</h1>
+      <ul>
+        <a href="https://github.com/Stavbl/Relabel"><li>Github.com</li></a>
+        <a href="https://github.com/Stavbl/Relabel/archive/master.zip"><li>Download .zip</li></a>
+      </ul>
+    </header>
+    <div id="main-container">
+      <main>
+        <h1>Relabel Web Service API</h1>
+        <p>
+          This <span>WS</span> was created to provide detailes about<br>
+          our system's users and their profile settings, also providing <br>
+          mathcing tracks by the user's preferences. <br>
+          As a RESTful Serveice all users & track's detailes will be returned<br> in
+          JSON format.
+        </p>
+        <!--  -->
+
+        <div class="request">
+          <h3>Login: [POST]</h3>
+          <a href="https://relabel--service.herokuapp.com/users/login/">
+            https://relabel--service.herokuapp.com/users/login/</a>
+          <h4>Parameters:</h4>
+          <p>
+            <span class="indent"></span>[POST]<br>
+            <span class="indent"></span><span class="indent"></span>username : string
+            <br>
+            <span class="indent"></span><span class="indent"></span>password : string
+          </p>
+          <h4>JSON Response Example:</h4>
+          <div class="json">
+            {
+              "_id"      : "5948ee45f36d28648d054faa",
+              "username" : "Nivo",
+              "token"    : "eyJhbGciOiJIUzI"
+            }
+          </div>
+        </div>
+        <div class="request">
+          <h3>Get Preferences by Id: [POST]</h3>
+          <a href="https://relabel--service.herokuapp.com/users/getPrefById/">
+            https://relabel--service.herokuapp.com/users/getPrefById/</a>
+          <h4>Parameters:</h4>
+          <p>
+            <span class="indent"></span>[POST]<br>
+            <span class="indent"></span><span class="indent"></span>id : string - currently pass username :)
+          </p>
+          <h4>JSON Response Example:</h4>
+          <div class="json">
+            [
+              {
+                  "name": "detriot",
+                  "value": 3
+              },
+              {
+                  "name": "hard",
+                  "value": 0
+              },
+              {
+                  "name": "dance",
+                  "value": 0
+              },
+              {
+                  "name": "minimal",
+                  "value": 7
+              },
+              {
+                  "name": "classic",
+                  "value": 1
+              },
+              {
+                  "name": "house",
+                  "value": 0
+              },
+              {
+                  "name": "vgm",
+                  "value": 0
+              },
+              {
+                  "name": "hard_acid",
+                  "value": 0
+              },
+              {
+                  "name": "electro",
+                  "value": 0
+              }
+          ]
+          </div>
+        </div>
+        <div class="request">
+          <h3>Get Tracks by Preferences: [POST]</h3>
+          <a href="https://relabel--service.herokuapp.com/tracks/getTracksByPref/">
+            https://relabel--service.herokuapp.com/tracks/getTracksByPref/</a>
+          <h4>Parameters:</h4>
+          <p>
+            <span class="indent"></span>[POST]<br>
+            <span class="indent"></span><span class="indent"></span>id : string - currently pass username :)
+          </p>
+          <h4>JSON Response Example:</h4>
+          <div class="json">
+            [
+              {
+                  "_id": "59462c52734d1d59b7894817",
+                  "name": "Strings of Life",
+                  "artist": "Rhythim Is Rhythim",
+                  "album": "Extrawelt v",
+                  "year": 1987,
+                  "length": 707,
+                  "genre": [
+                      "detriot"
+                  ]
+              }
+            ]
+          </div>
+        </div>
+        <!--  -->
+      </main>
+    </div>
+  </body>
+</html>
