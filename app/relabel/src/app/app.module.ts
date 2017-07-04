@@ -14,8 +14,10 @@ import {RouterModule } from '@angular/router';
 import { TrackService } from "./services/track.service";
 import { PrefService } from "./services/pref.service";
 import { LoginService } from "./services/login.service";
+import { PlaylistService } from "./services/playlist.service";
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './authGuard/auth.guard';
+import { AppDropdownDirective } from './directives/app-dropdown.directive';
 
 
 
@@ -25,7 +27,8 @@ import { AuthGuard } from './authGuard/auth.guard';
     DashboardComponent,
     PreferencesComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    AppDropdownDirective
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { AuthGuard } from './authGuard/auth.guard';
     TrackService,
     PrefService,
     LoginService,
+    PlaylistService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

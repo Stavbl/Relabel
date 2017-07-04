@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   tracks: Track[];
   rows: Track[][] = [];
   user: User;
-  playlists: Playlist[]; 
+  playlists: Playlist[];
 
   constructor(private tracktService: TrackService, private playlistService: PlaylistService) { }
 
@@ -41,8 +41,10 @@ export class DashboardComponent implements OnInit {
     return this.tracks.slice(startIndex, startIndex + 3);
   }
 
-  showMore(id: string) {
-     
+  addTrackToPlaylist(trackId: string, playlistName: string) {
+     console.log(trackId + ', ' + playlistName);
+     this.playlistService.addTrackToPlaylist(this.user._id,trackId,playlistName).then((res)=> {
+       console.log(res);
+     });
   }
-
 }

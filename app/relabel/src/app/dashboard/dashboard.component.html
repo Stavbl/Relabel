@@ -6,7 +6,14 @@
         <h3>Name:   {{t.name}}</h3>
         <h4>Artist: {{t.artist}}</h4>
         <h5>Album:  {{t.album}}</h5>
-        <button (click)="showMore(t.id)">More</button>
+        <div class="btn-group" appDropdown>
+          <button type="button" class="btn btn-primary dropdown-toggle">More
+            <span class="caret"></span>
+          </button>
+            <ul class="dropdown-menu">
+              <li *ngFor="let p of playlists"><button (click)="addTrackToPlaylist(t._id,p.name)">{{p.name}}</button></li>
+            </ul>
+        </div>
       </div>
     </div>
   </div>
