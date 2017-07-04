@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TrackService } from "../services/track.service";
 import { Track } from "../models/track";
 import { User } from "../models/user";
+import { Playlist } from "../models/playlist";
+import { TrackService } from "../services/track.service";
+import { PlaylistService } from "../services/playlist.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +14,9 @@ export class DashboardComponent implements OnInit {
   tracks: Track[];
   rows: Track[][] = [];
   user: User;
+  playlists: Playlist[]; 
 
-  constructor(private tracktService: TrackService) { }
+  constructor(private tracktService: TrackService, private playlistService: PlaylistService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
@@ -24,6 +27,9 @@ export class DashboardComponent implements OnInit {
         this.rows.push(this.getRow(i));
       }
     });
+    this.playlistService.getPlaylistsById(this.user._id).then((pl)=> {
+      this.playlists = pl;
+    });
   }
 
   numRows(): number {
@@ -33,6 +39,10 @@ export class DashboardComponent implements OnInit {
   getRow(i: number) {
     const startIndex = (i) * 3;
     return this.tracks.slice(startIndex, startIndex + 3);
+  }
+
+  showMore(id: string) {
+     
   }
 
 }
