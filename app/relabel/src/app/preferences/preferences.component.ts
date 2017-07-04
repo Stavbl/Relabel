@@ -25,6 +25,7 @@ export class PreferencesComponent implements OnInit {
   }
 
   updatePref() {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.prefservice.setPrefById(this.user._id,this.pref).then((prf) => {
       this.pref = prf; 
       this.router.navigate(['./dashboard'])

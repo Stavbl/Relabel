@@ -2,34 +2,8 @@ var express = require('express');
 var router = express.Router();
 var userService = require('../services/user.service');
 var session = require('express-session');
-// var cookieParser = require('cookie-parser');
 var User = require('../models/user');
 var consts = require('../consts.js');
-
-// router.use(session({ secret: consts.secret, resave: false, saveUninitialized: true }));
-
-// app.use(function(req, res, next) {
-//   // console.log("mid:" + req.session.user.username);
-//   if (req.session && req.session.user) {
-//     userService.getUser(req.session.user.username)
-//     .then(function(user){
-//       if (user) {
-//         console.log("in use");
-//         req.user = user;
-//         delete req.user.password; // delete the password from the session
-//         req.session.user = user;  //refresh the session value
-//         res.locals.user = user;
-//       }
-//       // finishing processing the middleware and run the route
-//       next();
-//     })
-//     .catch(function (err) {
-//             res.status(400).send(err);
-//         });
-//   }
-//   else
-//     next();
-// });
 
 // routes
 router.post('/login', login);
@@ -50,13 +24,6 @@ function login(req, res) {
     userService.login(req.body.username, req.body.password)
         .then(function (user) {
             if (user) {
-              // authentication successful
-              // req.user = user;
-              // req.session.user = user;
-              // req.session.token = user.token;
-              // console.log(req.session.user.username);
-              // console.log(req.session.token);
-              // req.session.save();
               res.send(user);
             } else {
                 // authentication failed
@@ -95,13 +62,8 @@ function getPrefById(req, res) {
 
 function setPref(req, res) {
     userService.setPref(req.body.id, req.body.update)
-        .then(function () {
-          res.sendStatus(200);
-            // if (pref) {
-            //     res.send(pref);
-            // } else {
-            //     res.sendStatus(404);
-            // }
+        .then(function (pref) {
+          res.send(pref);
         })
         .catch(function (err) {
           console.log("setPref error:" + err);
