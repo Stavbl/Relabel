@@ -19,13 +19,13 @@ export class PreferencesComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
-    this.prefservice.getPrefById(this.user.username).then((prf) => {
+    this.prefservice.getPrefById(this.user._id).then((prf) => {
       this.pref = prf; 
     });
   }
 
   updatePref() {
-    this.prefservice.setPrefById(this.user.username,this.pref).then((prf) => {
+    this.prefservice.setPrefById(this.user._id,this.pref).then((prf) => {
       this.pref = prf; 
       this.router.navigate(['./dashboard'])
     });

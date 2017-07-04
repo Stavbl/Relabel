@@ -6,7 +6,10 @@ var session = require('express-session');
 var User = require('../models/user');
 var consts = require('../consts.js');
 
-// router.use(function(req, res, next) {
+// router.use(session({ secret: consts.secret, resave: false, saveUninitialized: true }));
+
+// app.use(function(req, res, next) {
+//   // console.log("mid:" + req.session.user.username);
 //   if (req.session && req.session.user) {
 //     userService.getUser(req.session.user.username)
 //     .then(function(user){
@@ -48,10 +51,12 @@ function login(req, res) {
         .then(function (user) {
             if (user) {
               // authentication successful
-              req.session.user = user;
-              req.session.token = user.token;
-              console.log(req.session.user.username);
-              console.log(req.session.token);
+              // req.user = user;
+              // req.session.user = user;
+              // req.session.token = user.token;
+              // console.log(req.session.user.username);
+              // console.log(req.session.token);
+              // req.session.save();
               res.send(user);
             } else {
                 // authentication failed
@@ -59,6 +64,7 @@ function login(req, res) {
             }
         })
         .catch(function (err) {
+            console.log("login error:" + err);
             res.status(400).send(err);
         });
 }
@@ -89,16 +95,17 @@ function getPrefById(req, res) {
 
 function setPref(req, res) {
     userService.setPref(req.body.id, req.body.update)
-        .then(function (pref) {
-          // res.sendStatus(200);
-            if (pref) {
-                res.send(pref);
-            } else {
-                res.sendStatus(404);
-            }
+        .then(function () {
+          res.sendStatus(200);
+            // if (pref) {
+            //     res.send(pref);
+            // } else {
+            //     res.sendStatus(404);
+            // }
         })
         .catch(function (err) {
-            res.status(400).send(err);
+          console.log("setPref error:" + err);
+          res.status(400).send(err);
         });
 }
 
@@ -113,9 +120,9 @@ function _delete(req, res) {
 }
 
 function checkSignIn(req, res, next){
-   if (!req.session.token ) {
+   if (!req.session.user ) {
     console.log("checkSignIn.: NOT");
-    res.redirect('/users/login');
+    res.redirect('/');
   } else {
     next();
   }

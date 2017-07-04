@@ -45,9 +45,9 @@ function getUserById(userId){
         });
   });
 }
-function getUser(username){
+function getUser(userId){
   return new Promise((resolve, reject) => {
-    User.findOne({username: username},
+    User.findOne({_id: ObjectId(userId)},
         (err, user) => {
           if(err) {
             reject(err);
@@ -71,7 +71,7 @@ function login(username, password){
             reject({"error": err});
             console.log('LOGIN STATUS: FAILED');
           }
-          console.log('LOGIN STATUS: SUCCESS');
+          
           if(!user) {
             console.log("info : wrong username");
             return resolve({"info": " wrong username"});
@@ -80,7 +80,7 @@ function login(username, password){
             console.log("info : wrong password");
             return resolve({"info": " wrong password"});
           }
-
+          console.log('LOGIN STATUS: SUCCESS ' + user.username);
           resolve({
                 _id: user._id,
                 username: user.username,
@@ -89,10 +89,10 @@ function login(username, password){
         });
     });
 }
-function getPrefById(username){
-  console.log("Trace: getPrefById("+username+")");
+function getPrefById(userId){
+  console.log("Trace: getPrefById("+userId+")");
   return new Promise((resolve, reject) => {
-    User.findOne({username: username},
+    User.findOne({_id: ObjectId(userId)},
       (err, user) => {
         if(err) {
           console.log('getPrefById STATUS: FAILED');
@@ -107,11 +107,11 @@ function getPrefById(username){
       });
   });
 }
-function setPref(username, userParam) {
+function setPref(userId, userParam) {
+  console.log("Trace: setPrefById("+userId+")");
     return new Promise((resolve, reject) => {
           var obj = JSON.parse(userParam);
-          // console.log(obj[1]);
-          var conditions = {username: username},
+          var conditions = {_id: ObjectId(userId)},
           update = {'preferences.0.value':obj[0].value,
                     'preferences.1.value':obj[1].value,
                     'preferences.2.value':obj[2].value,
@@ -136,7 +136,7 @@ function setPref(username, userParam) {
             }
 
             });
-          resolve(obj);
+          resolve();
         });
 }
 

@@ -6,13 +6,27 @@ const express    = require('express'),
 var expressJwt = require('express-jwt');
 var session = require('express-session');
 var consts = require('./consts.js');
+var userService = require('./services/user.service');
+var cors = require('cors');
 
-
+app.use(cors());
 app.set('port',port);
 app.use('/', express.static('./public')); //for API
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(session({ secret: consts.secret, resave: false, saveUninitialized: true }));
+// app.use(session({ secret: consts.secret, resave: false, saveUninitialized: true }));
+
+app.use(expressJwt({
+    secret: consts.secret,
+    getToken: function (req) {
+        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+            return req.headers.authorization.split(' ')[1];
+        } else if (req.query && req.query.token) {
+            return req.query.token;
+        }
+        return null;
+    }
+}).unless({ path: ['/users/login'] }));
 
 
 app.use(
