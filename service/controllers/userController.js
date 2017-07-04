@@ -11,6 +11,7 @@ router.post('/register', register);
 router.get('/logout', logout);
 router.get('/getPrefById', checkSignIn, getPrefById);
 router.post('/getPrefById', getPrefById);
+router.post('/getPlaylistsById', getPlaylistsById);
 router.post('/setPref', setPref);
 router.post('/addTrackToPlaylist', addTrackToPlaylist);
 router.delete('/:_id', _delete);
@@ -109,4 +110,19 @@ function addTrackToPlaylist(req, res) {
     .catch(function (err) {
         res.status(400).send(err);
     });
+}
+
+function getPlaylistsById(req, res){
+    userService.getPlaylistsById(req.body.id)
+        .then(function (playlists) {
+            if (playlists) {
+                console.log("playlists:" + playlists);
+                res.send(playlists);
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
 }

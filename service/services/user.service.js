@@ -10,6 +10,7 @@ service.getData            = getData;
 service.login              = login;
 service.getUserById        = getUserById;
 service.getPrefById        = getPrefById;
+service.getPlaylistsById   = getPlaylistsById;
 service.setPref            = setPref;
 service.getUser            = getUser;
 service.addTrackToPlaylist = addTrackToPlaylist;
@@ -157,5 +158,23 @@ function addTrackToPlaylist(trackId, userId, playlistName) {
     });
     resolve(true);
     });
+  });
+}
+function getPlaylistsById(userId){
+  console.log("Trace: getPlaylistsById("+userId+")");
+  return new Promise((resolve, reject) => {
+    User.findOne({_id: ObjectId(userId)},
+      (err, user) => {
+        if(err) {
+          console.log('getPlaylistsById STATUS: FAILED');
+          reject({"error": err});
+        }
+        if(!user) {
+          console.log("info : wrong username");
+          return resolve({"info": " wrong username"});
+        }
+        console.log('getPlaylistsById STATUS: SUCCESS ' + user.playlists);
+        resolve(user.playlists);
+      });
   });
 }
