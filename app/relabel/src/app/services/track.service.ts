@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable,EventEmitter} from '@angular/core';
 import { Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
 import { Track } from '../models/track';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class TrackService {
-
+  itemSelected = new EventEmitter<Track>();
   private base_url: String = 'http://localhost:3000/tracks';
 
   constructor(private http: Http,  defaultOptions: RequestOptions) { }

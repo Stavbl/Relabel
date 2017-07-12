@@ -5,5 +5,6 @@ export class Track {
     public album: string;
     public year: number;
     public length: number;
+    public url: string;
     public genre: string;
 }

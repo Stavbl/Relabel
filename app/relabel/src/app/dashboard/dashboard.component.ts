@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Track } from "../models/track";
 import { User } from "../models/user";
 import { Playlist } from "../models/playlist";
@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   rows: Track[][] = [];
   user: User;
   playlists: Playlist[];
+  trackSelected:Track;
 
   constructor(private tracktService: TrackService, private playlistService: PlaylistService) { }
 
@@ -30,6 +31,18 @@ export class DashboardComponent implements OnInit {
     this.playlistService.getPlaylistsById(this.user._id).then((pl)=> {
       this.playlists = pl;
     });
+    this.tracktService.itemSelected.subscribe(
+         (track:Track)=>{
+           this.trackSelected = track;
+         }
+     );
+  }
+
+  onSelected(track: Track){
+      // this.itemSelected.emit();
+      console.log("on select - " + track.name);
+        this.tracktService.itemSelected.emit(track)
+      
   }
 
   numRows(): number {

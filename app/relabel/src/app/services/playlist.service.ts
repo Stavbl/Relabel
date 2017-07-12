@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
 import { Pref } from "../models/pref";
 import 'rxjs/add/operator/toPromise';
@@ -6,6 +6,7 @@ import { Playlist } from "app/models/playlist";
 
 @Injectable()
 export class PlaylistService {
+  playlistSelected = new EventEmitter<Playlist>();
 
   private base_url: String = 'http://localhost:3000/users';
 

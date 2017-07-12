@@ -2,7 +2,7 @@
 <div class="container"> 
   <div class="row" *ngFor="let r of rows; let i=index">
     <div class="col-md-4" *ngFor="let t of r" >
-      <div class="dashboard_track">
+      <a class="dashboard_track" (click)="onSelected(t)">
         <h3>Name:   {{t.name}}</h3>
         <h4>Artist: {{t.artist}}</h4>
         <h5>Album:  {{t.album}}</h5>
@@ -14,10 +14,19 @@
               <li *ngFor="let p of playlists"><button (click)="addTrackToPlaylist(t._id,p.name)">{{p.name}}</button></li>
             </ul>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>
+
+<app-player
+  *ngIf="trackSelected; else helpText"
+  [track]=trackSelected
+  >
+</app-player>
+<ng-template #helpText>
+    <h4>select track</h4>
+</ng-template>
 
 <div class="col-md-6 col-md-offset-3">
     <h1>Hi {{user?.username}}!</h1>

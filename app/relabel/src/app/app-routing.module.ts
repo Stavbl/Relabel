@@ -4,12 +4,14 @@ import {Routes,RouterModule} from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { LoginComponent } from './login/login.component';
+import { PlaylistComponent } from './playlist/playlist.component';
 import { AuthGuard } from './authGuard/auth.guard';
 
 const appRoutes: Routes =[
     { path: '', redirectTo: '/login', pathMatch:'full'},
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
     { path: 'getPref', component: PreferencesComponent, canActivate: [AuthGuard]},
+    { path: 'playlist', component: PlaylistComponent, canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent}
 ];
 
