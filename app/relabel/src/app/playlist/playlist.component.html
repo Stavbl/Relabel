@@ -4,7 +4,7 @@
     <div class="col-md-4" *ngFor="let p of r" >
       <a class="dashboard_track" (click)="onSelected(p)">
         <h3>Name:   {{p.name}}</h3>
-        <h4>track: {{p.tracks[0]}}</h4>
+        <h4>track: {{p.tracks[0].name}}</h4>
       </a>
     </div>
   </div>
@@ -12,7 +12,7 @@
 
 <app-player
   *ngIf="playlistSelected; else helpText"
-  [track]=playlistSelected
+  [playlist]=playlistSelected
   >
 </app-player>
 <ng-template #helpText>

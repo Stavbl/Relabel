@@ -1,4 +1,17 @@
+import { Track } from "../models/track";
 export class Playlist {
-    constructor(public name: string, public tracks: [string]) {
+    name: string;
+    tracks: { [name: string]: Track };
+
+    constructor(data: Track[] & { name: string }) {
+        this.name = data.name;
+            this.tracks = {};
+
+            Object.keys(data).forEach(name => {
+                  if (name !== "name") {
+                        this.tracks[name] = new Track();
+                  }
+            });
   }
 }
+

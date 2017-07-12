@@ -23,6 +23,7 @@ export class PlaylistComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.playlistService.getPlaylistsById(this.user._id).then((pl)=> {
       this.playlists = pl;
+      console.log(this.playlists[0].tracks[0]);
       this.rows = [];
       for (let i = 0; i < this.numRows(); i++) {
         this.rows.push(this.getRow(i));
@@ -37,7 +38,7 @@ export class PlaylistComponent implements OnInit {
 
   onSelected(playlist:Playlist){
       // this.itemSelected.emit();
-      console.log("on select - " + playlist.name);
+      console.log("on select - " + playlist.tracks[0]);
         this.playlistService.playlistSelected.emit(playlist)
       
   }

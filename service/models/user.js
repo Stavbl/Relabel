@@ -1,3 +1,4 @@
+var Track = require('./track');
 var mongoose = require('mongoose'),
     schema = mongoose.Schema,
     userSchema = new schema({
@@ -13,7 +14,7 @@ var mongoose = require('mongoose'),
       playlists: [
         {
           name: String,
-          tracks: [String]
+          tracks: [{name: String, url: String}]
         }
       ]
     });

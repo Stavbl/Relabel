@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PlayerService } from '../../services/player.service';
+import { PlaylistService } from '../../services/playlist.service';
 import { TrackService } from "../../services/track.service";
 import { Track } from "../../models/track";
+import { Playlist } from "../../models/playlist";
 
 
 @Component({
@@ -11,6 +13,7 @@ import { Track } from "../../models/track";
 })
 export class PlayerComponent implements OnInit{
   @Input() track: Track;
+  @Input() playlist: Playlist;
   title;
   position;
   elapsed;
@@ -21,6 +24,7 @@ export class PlayerComponent implements OnInit{
   backgroundStyle;
 
   constructor(private tracktService: TrackService,
+    private playlistService: PlaylistService,
     private playerService: PlayerService
   ){}
 
@@ -29,12 +33,23 @@ export class PlayerComponent implements OnInit{
         //   this.tracks = tracks;
         //   this.handleRandom();
         // }); 'https://s3.amazonaws.com/relabel/Pan+Pot+-+Sleepless+(Stephan+Bodzin+Remix+)+%5B128BPM%5D.mp3'
-    this.playerService.play(this.track.url);
+    if(this.track){
+      this.playerService.play(this.track.url);
+    }
+    else{
+      this.playerService.play(this.playlist.tracks[0].url);
+    }
     this.playerService.audio.onended = this.handleEnded.bind(this);
     this.playerService.audio.ontimeupdate = this.handleTimeUpdate.bind(this);
     this.tracktService.itemSelected.subscribe(
          (track:Track)=>{
            this.playerService.play(track.url);
+         }
+     );
+    this.playlistService.playlistSelected.subscribe(
+         (playlist:Playlist)=>{
+           console.log("inside playlist event listning");
+           this.playerService.play(playlist.tracks[0].url);
          }
      );
   }
