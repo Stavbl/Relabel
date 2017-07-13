@@ -19,6 +19,7 @@ export class PlayerComponent implements OnInit{
   elapsed;
   duration;
   paused = true;
+  plalyistCount = 1;
   tracks: any[] = [];
   filteredTracks: any[] = [];
   backgroundStyle;
@@ -37,9 +38,11 @@ export class PlayerComponent implements OnInit{
       this.playerService.play(this.track.url);
     }
     else{
+      // this.tracks = this.playlist.tracks;
       this.playerService.play(this.playlist.tracks[0].url);
+      this.playerService.audio.onended = this.handleEnded.bind(this);
     }
-    this.playerService.audio.onended = this.handleEnded.bind(this);
+    
     this.playerService.audio.ontimeupdate = this.handleTimeUpdate.bind(this);
     this.tracktService.itemSelected.subscribe(
          (track:Track)=>{
@@ -50,12 +53,15 @@ export class PlayerComponent implements OnInit{
          (playlist:Playlist)=>{
            console.log("inside playlist event listning");
            this.playerService.play(playlist.tracks[0].url);
+           this.plalyistCount = 1;
          }
      );
   }
 
   handleEnded(e) {
-    this.handleRandom();
+    // this.handleRandom();
+    this.playerService.play(this.playlist.tracks[this.plalyistCount].url);
+    this.plalyistCount++;
   }
 
   handleRandom() {
