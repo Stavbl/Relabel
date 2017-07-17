@@ -22,6 +22,9 @@ import { AuthGuard } from './authGuard/auth.guard';
 import { AppDropdownDirective } from './directives/app-dropdown.directive';
 import { PlayerViewComponent } from './dashboard/player/player-view/player-view.component';
 import { PlaylistComponent } from './playlist/playlist.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
+import { MiniPlayerComponent } from './mini-player/mini-player.component';
+import { MiniPlayerService } from "app/services/mini-player.service";
 
 
 
@@ -37,7 +40,9 @@ import { PlaylistComponent } from './playlist/playlist.component';
     AppDropdownDirective,
     PlayerComponent,
     PlayerViewComponent,
-    PlaylistComponent
+    PlaylistComponent,
+    MainMenuComponent,
+    MiniPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +56,7 @@ import { PlaylistComponent } from './playlist/playlist.component';
     LoginService,
     PlaylistService,
     PlayerService,
+    MiniPlayerService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

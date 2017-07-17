@@ -1,0 +1,30 @@
+.menu-wrapper {
+    background-color: rgba(0,0,0,0.68);
+    color: #696969;
+    box-sizing: border-box; 
+    padding: 10px 29px 20px 35px;
+    margin-left: 20px;
+    max-width: 251px;
+}
+
+ul li {
+    list-style: none;
+    padding-left: 20px;
+    margin-bottom: 9px; 
+}
+ul li:first-child {
+    padding-left: 0;
+    border-bottom: 2px solid #696969;
+    margin-bottom: 30px;
+}
+ul li:nth-child(3) {
+    margin-bottom: 50px;
+}
+a {
+    text-decoration: none;
+    color: #696969;
+}
+a:hover {
+    color: #ffffff;
+    font-weight: bold;
+}

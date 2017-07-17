@@ -1,0 +1,8 @@
+<div id="miniPlayer" *ngIf="currentTrack != null">
+    <img src="../../assets/volume.png">
+    <p><span id="slash">/</span> {{currentTrack.name}} <{{currentTrack.artist}}></p>
+    <img src="../../assets/playButton.png" (click)="play()">
+    <img src="../../assets/pauseButton.png" (click)="pause()">
+    <img src="../../assets/stopButton.png" (click)="stop()">
+    <p id="timer">{{timeStr}}</p>
+</div>
