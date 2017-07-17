@@ -42,7 +42,6 @@ export class DashboardComponent implements OnInit {
   onSelected(track: Track){
       console.log("on select - " + track.name);
       this.mps.itemSelected.emit(track)
-      
   }
 
   numRows(): number {

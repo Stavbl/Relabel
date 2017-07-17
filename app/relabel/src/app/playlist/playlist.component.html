@@ -1,13 +1,31 @@
-
-<div class="container"> 
-  <div class="row" *ngFor="let r of rows; let i=index">
+<div class="background"> 
+  <div class="row">
+    <div class="col-md-3">
+      <main-menu></main-menu>
+    </div>
+    <div class="col-md-7">
+      <h1>Playlists / Sets by your own choise</h1>
+      <div class="row">
+        <div *ngFor="let r of rows; let i=index">
+          <div class="col-md-3" *ngFor="let p of r" >
+            <a class="playlist" (click)="onSelected(p)">
+              <h3><{{p.name}}></h3>
+              <h4>track: {{p.tracks[0].name}}</h4>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- <div class="row" *ngFor="let r of rows; let i=index">
     <div class="col-md-4" *ngFor="let p of r" >
       <a class="dashboard_track" (click)="onSelected(p)">
         <h3>Name:   {{p.name}}</h3>
         <h4>track: {{p.tracks[0].name}}</h4>
       </a>
     </div>
-  </div>
+  </div> -->
 </div>
 
 <app-player

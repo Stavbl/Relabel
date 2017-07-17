@@ -44,12 +44,12 @@ export class PlaylistComponent implements OnInit {
   }
 
   numRows(): number {
-    return Math.max(Math.ceil((this.playlists.length) / 3), 0);
+    return Math.max(Math.ceil((this.playlists.length) / 4), 0);
   }
 
   getRow(i: number) {
-    const startIndex = (i) * 3;
-    return this.playlists.slice(startIndex, startIndex + 3);
+    const startIndex = (i) * 4;
+    return this.playlists.slice(startIndex, startIndex + 4);
   }
 
 }
