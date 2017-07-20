@@ -25,8 +25,8 @@ export class PlayerComponent implements OnInit{
   backgroundStyle;
 
   constructor(private tracktService: TrackService,
-    private playlistService: PlaylistService,
-    private playerService: PlayerService
+              private playlistService: PlaylistService,
+              private playerService: PlayerService
   ){}
 
   ngOnInit() {
@@ -44,8 +44,10 @@ export class PlayerComponent implements OnInit{
 
   handleEnded(e) {
     // this.handleRandom();
-    this.playerService.play(this.playlist.tracks[this.plalyistCount].url);
-    this.plalyistCount++;
+    if (this.plalyistCount<this.playlist.tracks.length){
+      this.playerService.play(this.playlist.tracks[this.plalyistCount].url);
+      this.plalyistCount++;
+    }
   }
 
   handleRandom() {
