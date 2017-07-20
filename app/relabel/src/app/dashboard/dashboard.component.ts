@@ -18,7 +18,9 @@ export class DashboardComponent implements OnInit {
   playlists: Playlist[];
   trackSelected:Track;
 
-  constructor(private tracktService: TrackService, private playlistService: PlaylistService, private mps:MiniPlayerService) { }
+  constructor(private tracktService: TrackService,
+              private playlistService: PlaylistService, 
+              private mps:MiniPlayerService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));

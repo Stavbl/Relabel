@@ -1,5 +1,17 @@
 <ul class="menu-wrapper">
-  <li>Search</li>
+<!-- 
+  <li><input ngui-auto-complete
+        id="search"
+        placeholder="Search"     
+        [(ngModel)]="search" 
+        [source]="appSvc.findHeroes"
+        path-to-data="data.results"
+        [list-formatter]="renderHero"
+        min-chars="2" 
+      />
+      <br/>selected search: {{search | json}}<br/><br/></li> -->
+      
+  <li><a routerLink="#">SEARCH</a></li>
   <li><a routerLink="#">STORE</a></li>
   <li><a routerLink="#">CREATE WITH</a></li>
   <li><a routerLink="#">SHARING EFFECTS</a></li>

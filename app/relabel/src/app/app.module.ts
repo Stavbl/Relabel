@@ -13,6 +13,7 @@ import { PlayerComponent } from './dashboard/player/player.component';
 // Added imports
 import {RouterModule } from '@angular/router';
 import { TrackService } from "./services/track.service";
+import { AlertService } from "./services/alert.service";
 import { PrefService } from "./services/pref.service";
 import { LoginService } from "./services/login.service";
 import { PlaylistService } from "./services/playlist.service";
@@ -25,7 +26,8 @@ import { PlaylistComponent } from './playlist/playlist.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { MiniPlayerComponent } from './mini-player/mini-player.component';
 import { MiniPlayerService } from "app/services/mini-player.service";
-
+import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
+import { AlertsComponent } from './alerts/alerts.component';
 
 
 
@@ -42,17 +44,20 @@ import { MiniPlayerService } from "app/services/mini-player.service";
     PlayerViewComponent,
     PlaylistComponent,
     MainMenuComponent,
-    MiniPlayerComponent
+    MiniPlayerComponent,
+    AlertsComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2AutoCompleteModule
   ],
   providers: [
     TrackService,
     PrefService,
+    AlertService,
     LoginService,
     PlaylistService,
     PlayerService,

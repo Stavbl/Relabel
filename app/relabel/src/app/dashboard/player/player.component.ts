@@ -30,25 +30,9 @@ export class PlayerComponent implements OnInit{
   ){}
 
   ngOnInit() {
-        // this.playerService.getPlaylistTracks().subscribe(tracks => {
-        //   this.tracks = tracks;
-        //   this.handleRandom();
-        // }); 'https://s3.amazonaws.com/relabel/Pan+Pot+-+Sleepless+(Stephan+Bodzin+Remix+)+%5B128BPM%5D.mp3'
-    if(this.track){
-      this.playerService.play(this.track.url);
-    }
-    else{
-      // this.tracks = this.playlist.tracks;
-      this.playerService.play(this.playlist.tracks[0].url);
-      this.playerService.audio.onended = this.handleEnded.bind(this);
-    }
-    
+    this.playerService.play(this.playlist.tracks[0].url);
+    this.playerService.audio.onended = this.handleEnded.bind(this);
     this.playerService.audio.ontimeupdate = this.handleTimeUpdate.bind(this);
-    this.tracktService.itemSelected.subscribe(
-         (track:Track)=>{
-           this.playerService.play(track.url);
-         }
-     );
     this.playlistService.playlistSelected.subscribe(
          (playlist:Playlist)=>{
            console.log("inside playlist event listning");
