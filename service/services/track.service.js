@@ -72,3 +72,21 @@ randomizeTracksByGenre = function(tracks,genre,precent) {
   }
   return retTracks;
 }
+
+exports.getTrackById = function(trackId) {
+  return new Promise((resolve, reject) => {
+    Track.findOne({_id: ObjectId(trackId)},
+        (err, track) => {
+          if(err) {
+            reject(err);
+            console.log('getTrack STATUS: FAILED');
+          }
+          console.log('getTrack STATUS: SUCCESS');
+          if(!track) {
+            console.log("info : wrong trackId");
+            return resolve(err);
+          }
+          resolve(track);
+        });
+  });
+}

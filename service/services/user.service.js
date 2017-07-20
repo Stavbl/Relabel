@@ -1,19 +1,22 @@
 const mongoose = require('mongoose'),
       ObjectId = require('mongodb').ObjectID;
 var User       = require('../models/user');
+var Track      = require('../models/track');
+var ts         = require('../services/track.service');
 var jwt        = require('jsonwebtoken');
 var consts     = require('../consts.js');
 
 var service = {};
 
-service.getData            = getData;
-service.login              = login;
-service.getUserById        = getUserById;
-service.getPrefById        = getPrefById;
-service.getPlaylistsById   = getPlaylistsById;
-service.setPref            = setPref;
-service.getUser            = getUser;
-service.addTrackToPlaylist = addTrackToPlaylist;
+service.getData                 = getData;
+service.login                   = login;
+service.getUserById             = getUserById;
+service.getPrefById             = getPrefById;
+service.getPlaylistsById        = getPlaylistsById;
+service.setPref                 = setPref;
+service.getUser                 = getUser;
+service.addTrackToPlaylist      = addTrackToPlaylist;
+service.removeTrackFromPlaylist = removeTrackFromPlaylist;
 // service.update = update;
 // service.delete = _delete;
 
@@ -142,22 +145,54 @@ function addTrackToPlaylist(trackId, userId, playlistName) {
   return new Promise((resolve, reject) => {
     let user = getUserById(userId).then((user)=> {
       user.playlists.forEach(function(pl) {
-        console.log(pl);
         if(pl.name === playlistName){
-          pl.tracks.push(trackId);
+          ts.getTrackById(trackId).then ((trk) => {
+            pl.tracks.push(trk);
+            user.save((err) => {
+              if(err){
+                console.log(`err: ${err}`);
+                resolve(false);
+                return;
+              }
+              else
+                console.log(`Saved document: ${user.username}`);
+            });
+          }); 
         }
       });
-      user.save((err) => {
-        if(err){
-          console.log(`err: ${err}`);
-          resolve(false);
-          return;
-        }
-        else
-          console.log(`Saved document: ${JSON.stringify(user)}`);
-    });
     resolve(true);
     });
+  });
+}
+function removeTrackFromPlaylist(trackId, userId, playlistName) {
+  console.log('Trace: removeTrackFromPlaylist('+trackId+','+userId+','+playlistName+')');
+  return new Promise((resolve,reject) => {
+    let user = getUserById(userId).then((user)=> {
+      for(let pIndex = 0; pIndex < user.playlists.length; pIndex++) {
+        if(user.playlists[pIndex].name === playlistName) {
+          console.log(`found playlist: ${playlistName}`);
+          for(let tIndex = 0; tIndex < user.playlists[pIndex].tracks.length; tIndex++) {
+            if(user.playlists[pIndex].tracks[tIndex].name === trackId){
+              console.log(`found track in playlist`);
+              user.playlists[pIndex].tracks.splice(tIndex,1);
+              user.save((err) => {
+                if(err) {
+                  console.log(`err: ${err}`);
+                  resolve(false);
+                  return;
+                }
+                else {
+                  console.log(`Saved document: ${user.username}`);
+                  resolve(true);
+                  return;
+                }   
+              });
+            }  
+          }
+        }
+      }
+    });
+    resolve(false);
   });
 }
 function getPlaylistsById(userId){
@@ -173,7 +208,7 @@ function getPlaylistsById(userId){
           console.log("info : wrong username");
           return resolve({"info": " wrong username"});
         }
-        console.log('getPlaylistsById STATUS: SUCCESS ' + user.playlists);
+        console.log('getPlaylistsById STATUS: SUCCESS');
         resolve(user.playlists);
       });
   });

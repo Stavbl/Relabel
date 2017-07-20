@@ -14,6 +14,7 @@ router.post('/getPrefById', getPrefById);
 router.post('/getPlaylistsById', getPlaylistsById);
 router.post('/setPref', setPref);
 router.post('/addTrackToPlaylist', addTrackToPlaylist);
+router.post('/removeTrackFromPlaylist', removeTrackFromPlaylist);
 router.delete('/:_id', _delete);
 router.get('/login', function(req, res){
    res.send('login page');
@@ -104,6 +105,19 @@ function addTrackToPlaylist(req, res) {
   let userId      = req.body.userId;
   let playlistName = req.body.playlistName;
   userService.addTrackToPlaylist(trackId, userId, playlistName)
+    .then(function(status) {
+        res.status(200).json({"status": status});
+    })
+    .catch(function (err) {
+        res.status(400).send(err);
+    });
+}
+
+function removeTrackFromPlaylist(req, res) {
+  let trackId     = req.body.trackId;
+  let userId      = req.body.userId;
+  let playlistName = req.body.playlistName;
+  userService.removeTrackFromPlaylist(trackId, userId, playlistName)
     .then(function(status) {
         res.status(200).json({"status": status});
     })
