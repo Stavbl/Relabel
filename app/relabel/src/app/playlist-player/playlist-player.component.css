@@ -1,0 +1,49 @@
+canvas {
+  width: 100%;
+}
+#time {
+    color: #FFF;
+    text-align: center;
+}
+.button {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-origin: center center;
+    height: 30px;
+}
+.button.shuffle {
+    background-image: url('../../assets/shuffle.png');
+}
+.button.shuffle:hover {
+    background-image: url('../../assets/shuffle_hover.png');
+}
+.button.shuffle.selected {
+
+    background-image: url('../../assets/shuffle_hover.png');
+}
+.button.loop {
+    background-image: url('../../assets/loop.png');
+}
+.button.play {
+    background-image: url('../../assets/playlist_pause.png');
+    height: 50px;
+    margin-top: -10px;
+}
+.button.pause {
+    background-image: url('../../assets/playlist_play.png');
+    height: 50px;
+    margin-top: -10px;
+}
+.button.play:hover {
+    background-image: url('../../assets/playlist_pause_hover.png');
+}
+.button.pause:hover {
+    background-image: url('../../assets/playlist_play_hover.png');
+}
+.button.loop:hover {
+    background-image: url('../../assets/loop_hover.png');
+}
+.button.loop.selected {
+
+    background-image: url('../../assets/loop_hover.png');
+}

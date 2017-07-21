@@ -28,6 +28,8 @@ import { MiniPlayerComponent } from './mini-player/mini-player.component';
 import { MiniPlayerService } from "app/services/mini-player.service";
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import { AlertsComponent } from './alerts/alerts.component';
+import { PlaylistPlayerComponent } from './playlist-player/playlist-player.component';
+import { PlaylistPlayerService } from "./services/playlist-player.service";
 
 
 
@@ -45,7 +47,8 @@ import { AlertsComponent } from './alerts/alerts.component';
     PlaylistComponent,
     MainMenuComponent,
     MiniPlayerComponent,
-    AlertsComponent
+    AlertsComponent,
+    PlaylistPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { AlertsComponent } from './alerts/alerts.component';
     AlertService,
     LoginService,
     PlaylistService,
+    PlaylistPlayerService,
     PlayerService,
     MiniPlayerService,
     AuthGuard

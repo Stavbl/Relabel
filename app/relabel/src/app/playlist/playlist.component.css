@@ -36,3 +36,42 @@ h1 {
     color: #727272;
 }
 
+#playlist_popup {
+ position: fixed;
+ left: 0;
+ right: 0;
+ top: 50%;
+ bottom: 0;
+background-image: url("../../assets/playlist_background.png");
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+border-top: 2px solid #CACACA;
+}
+#playlist_popup #tab {
+    background: #2f2f2f;
+    position: absolute;
+    top: -40px;
+    height: 40px;
+    border-top: 2px solid #CACACA;
+    border-left: 2px solid #CACACA;
+    border-right: 2px solid #CACACA;
+    width: 100px;
+    left: 20px;
+    color: #FFF;
+    text-align: center;
+    padding: 10px;
+}
+#playlist_popup #close {
+    position: absolute;
+    right: 10px;
+    top: -16px;
+    display: block;
+}
+#playlist_popup #close img {
+    width: 32px;
+    height: 32px;
+}
+#playlist_popup .row {
+    position: relative;
+}

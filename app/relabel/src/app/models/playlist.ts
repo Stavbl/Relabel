@@ -1,7 +1,6 @@
 import { Track } from "../models/track";
 export class Playlist {
     name: string;
-    // tracks: { [name: string]: Track };
     tracks: Track[];
 
     constructor(data: Track[] & { name: string }) {

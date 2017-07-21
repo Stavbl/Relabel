@@ -1,10 +1,10 @@
 .background {
     background-image: url("../../assets/prefBackground.png");
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat;
     height: 100%; 
     background-position: center;
     background-size: cover;
-    padding-top: 60px;
+    padding-top: 60px; */
 }
 label {
     display: inline-block;

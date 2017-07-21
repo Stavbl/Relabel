@@ -1,4 +1,5 @@
-<div class="background"> 
+<div class="background"></div>
+<div class="main-container" (window:resize)="onResize($event)">
   <div class="row">
     <div class="col-md-3">
       <main-menu></main-menu>
@@ -8,27 +9,27 @@
       <div class="row">
         <div *ngFor="let r of rows; let i=index">
           <div class="col-md-3" *ngFor="let p of r" >
-            <a class="playlist" (click)="onSelected(p)">
+            <a class="playlist" (click)="onSelected(p, $event)">
               <h3><{{p.name}}></h3>
-              <h4>track: {{p.tracks[0].name}}</h4>
+              <h4 *ngIf="p.tracks.length>0">track: {{p.tracks[0].name}}</h4>
             </a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
-  <!-- <div class="row" *ngFor="let r of rows; let i=index">
-    <div class="col-md-4" *ngFor="let p of r" >
-      <a class="dashboard_track" (click)="onSelected(p)">
-        <h3>Name:   {{p.name}}</h3>
-        <h4>track: {{p.tracks[0].name}}</h4>
-      </a>
+</div>
+<div *ngIf="selectedPlaylist && playlistSelected" id="playlist_popup" [style.top]="(selectedPlaylist.top+40) + 'px'">
+  <div class="container">
+    <div class="row">
+      <div id="close" (click)="closePlaylist()"><img src="../../assets/x.png"/></div>
     </div>
-  </div> -->
+  </div>
+  <div id="tab" [style.width]="selectedPlaylist.width + 'px'" [style.left]="selectedPlaylist.left + 'px'">{{playlistSelected.name}}</div>
+  <playlist-player></playlist-player>
 </div>
 
-<app-player
+ <!-- <app-player
   *ngIf="playlistSelected; else helpText"
   [playlist]=playlistSelected
   >
@@ -40,4 +41,4 @@
 <div class="col-md-6 col-md-offset-3">
     <h1>Hi {{user?.username}}!</h1>
     <p><a [routerLink]="['/login']">Logout</a></p>
-</div>
+</div>  -->
