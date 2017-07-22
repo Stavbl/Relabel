@@ -78,3 +78,29 @@ border-top: 2px solid #CACACA;
 #playlist_popup .row {
     position: relative;
 }
+.more {
+    background: transparent;
+    border: none;
+}
+.more:hover {
+    font-weight: bold;
+}
+.moree {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+.dropdown-menu {
+    background-color:  rgba(0,0,0,0.75);
+    border: 1px solid #ffffff;
+}
+.option {
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+}
+.option:hover {
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+}

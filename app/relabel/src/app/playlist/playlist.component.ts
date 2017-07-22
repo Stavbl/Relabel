@@ -32,6 +32,16 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.loadPlaylist();
+    this.playlistService.playlistSelected.subscribe(
+         (playlist:Playlist)=>{
+           this.playlistSelected = playlist;
+         }
+     );
+  }
+
+  loadPlaylist(){
+    this.playlists=[];
     this.playlistService.getPlaylistsById(this.user._id).then((pl)=> {
       this.playlists = pl;
       console.log(this.playlists[0].tracks[0]);
@@ -40,11 +50,6 @@ export class PlaylistComponent implements OnInit {
         this.rows.push(this.getRow(i));
       }
     });
-    this.playlistService.playlistSelected.subscribe(
-         (playlist:Playlist)=>{
-           this.playlistSelected = playlist;
-         }
-     );
   }
 
   onSelected(playlist:Playlist, e){
@@ -65,6 +70,14 @@ export class PlaylistComponent implements OnInit {
   addNewPlaylist(){
     this.playlistService.addNewPlaylist(this.user._id, this.playlistName).then((res)=> {
        console.log(res);
+       this.router.navigate(['./dashboard'])
+     });
+  }
+
+  removePlaylist(playlistName){
+    this.playlistService.removePlaylist(this.user._id, playlistName).then((res)=> {
+       console.log(res);
+       // this.loadPlaylist();
        this.router.navigate(['./dashboard'])
      });
   }

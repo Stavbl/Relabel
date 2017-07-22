@@ -6,6 +6,7 @@ import { TrackService } from "../services/track.service";
 import { PlaylistService } from "../services/playlist.service";
 import { MiniPlayerService } from "../services/mini-player.service";
 import { PlaylistPlayerService } from "../services/playlist-player.service";
+import { AlertService } from "../services/alert.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -20,9 +21,10 @@ export class DashboardComponent implements OnInit {
   trackSelected:Track;
 
   constructor(private tracktService: TrackService,
-              private playlistService: PlaylistService, 
+              private playlistService: PlaylistService,
+              private alertService: AlertService,
               private mps:MiniPlayerService,
-            private pps:PlaylistPlayerService) { }
+              private pps:PlaylistPlayerService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
@@ -45,6 +47,7 @@ export class DashboardComponent implements OnInit {
 
   onSelected(track: Track){
       console.log("on select - " + track.name);
+      this.alertService.clear();
       this.mps.itemSelected.emit(track)
       this.pps.pause();
   }
@@ -62,6 +65,7 @@ export class DashboardComponent implements OnInit {
      console.log(trackId + ', ' + playlistName);
      this.playlistService.addTrackToPlaylist(this.user._id,trackId,playlistName).then((res)=> {
        console.log(res);
+       this.alertService.success('Track added to playlist');
      });
   }
 }

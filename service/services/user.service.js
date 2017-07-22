@@ -8,7 +8,6 @@ var consts     = require('../consts.js');
 
 var service = {};
 
-service.getData                 = getData;
 service.login                   = login;
 service.getUserById             = getUserById;
 service.getPrefById             = getPrefById;
@@ -17,21 +16,12 @@ service.setPref                 = setPref;
 service.getUser                 = getUser;
 service.addTrackToPlaylist      = addTrackToPlaylist;
 service.addNewPlaylist          = addNewPlaylist;
-service.removeTrackFromPlaylist = removeTrackFromPlaylist;
-service.create = create;
+// service.removeTrackFromPlaylist = removeTrackFromPlaylist;
+service.removePlaylist          = removePlaylist;
+service.create                  = create;
 // service.delete = _delete;
 
 module.exports = service;
-
-function getData(req,res){
-    FT.find({},
-    (err,docs) => {
-        if(err) console.log(`query error: ${err}`);
-        console.log(docs);
-        res.json(docs);
-        return;
-    });
-}
 
 function addNewPlaylist(userId, playlistName){
   console.log('Trace: addTrackToPlaylist('+userId+','+playlistName+')');
@@ -252,6 +242,32 @@ function removeTrackFromPlaylist(trackId, userId, playlistName) {
               });
             }  
           }
+        }
+      }
+    });
+    resolve(false);
+  });
+}
+
+function removePlaylist(userId, playlistName) {
+  console.log('Trace: removePlaylist('+userId+','+playlistName+')');
+  return new Promise((resolve,reject) => {
+    let user = getUserById(userId).then((user)=> {
+      for(let pIndex = 0; pIndex < user.playlists.length; pIndex++) {
+        if(user.playlists[pIndex].name === playlistName) {
+          console.log(`found playlist: ${playlistName}`);
+          user.playlists.splice(pIndex,1);
+          user.save((err) => {
+            if(err) {
+              console.log(`err: ${err}`);
+              resolve(false);
+              return;
+            }
+            else {
+              console.log(`Saved document: ${user.username}`);
+              return resolve(true);
+            }   
+          });
         }
       }
     });
