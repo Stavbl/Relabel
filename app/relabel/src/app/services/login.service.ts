@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
 import { User } from '../models/user';
 import 'rxjs/add/operator/toPromise';
@@ -7,6 +7,7 @@ import 'rxjs/add/operator/toPromise';
 export class LoginService {
 // https://relabel--service.herokuapp.com/
   private base_url: String = 'http://localhost:3000/users';
+  currentUser = new EventEmitter<User>();
 
   constructor(private http: Http) { }
 
@@ -16,6 +17,7 @@ export class LoginService {
   logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        this.currentUser.emit(null);
     }
     private addJwt(options?: RequestOptionsArgs): RequestOptionsArgs {
         // ensure request options and headers are not null
