@@ -44,7 +44,6 @@ export class PlaylistComponent implements OnInit {
     this.playlists=[];
     this.playlistService.getPlaylistsById(this.user._id).then((pl)=> {
       this.playlists = pl;
-      console.log(this.playlists[0].tracks[0]);
       this.rows = [];
       for (let i = 0; i < this.numRows(); i++) {
         this.rows.push(this.getRow(i));

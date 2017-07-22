@@ -8,7 +8,7 @@ import { Playlist } from "app/models/playlist";
 export class PlaylistService {
   playlistSelected = new EventEmitter<Playlist>();
 
-  private base_url: String = 'http://localhost:3000/users';
+  private base_url: String = 'https://relabel--service.herokuapp.com/users';
 
   constructor(private http: Http,  defaultOptions: RequestOptions) { }
 
