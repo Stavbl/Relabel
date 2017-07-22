@@ -5,6 +5,7 @@ import { Playlist } from "../models/playlist";
 import { TrackService } from "../services/track.service";
 import { PlaylistService } from "../services/playlist.service";
 import { MiniPlayerService } from "../services/mini-player.service";
+import { PlaylistPlayerService } from "../services/playlist-player.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +21,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(private tracktService: TrackService,
               private playlistService: PlaylistService, 
-              private mps:MiniPlayerService) { }
+              private mps:MiniPlayerService,
+            private pps:PlaylistPlayerService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
@@ -44,6 +46,7 @@ export class DashboardComponent implements OnInit {
   onSelected(track: Track){
       console.log("on select - " + track.name);
       this.mps.itemSelected.emit(track)
+      this.pps.pause();
   }
 
   numRows(): number {

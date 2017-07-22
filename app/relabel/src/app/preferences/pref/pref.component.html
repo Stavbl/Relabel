@@ -1,0 +1,16 @@
+ <div class="pref" > 
+  <div class="name">{{prf.name}}</div>
+  <div (mousemove)="barMouseMove($event)" (mouseout)="barMouseOut()" (click)="barMouseClick()" id="fullbar" class="fullbar">
+    <div [ngClass]="{selected: getCurrentNumber() > 0}" class="bar"></div>
+    <div [ngClass]="{selected: getCurrentNumber() > 1}" class="bar"></div>
+    <div [ngClass]="{selected: getCurrentNumber() > 2}" class="bar"></div>
+    <div [ngClass]="{selected: getCurrentNumber() > 3}" class="bar"></div>
+    <div [ngClass]="{selected: getCurrentNumber() > 4}" class="bar"></div>
+    <div [ngClass]="{selected: getCurrentNumber() > 5}" class="bar"></div>
+    <div [ngClass]="{selected: getCurrentNumber() > 6}" class="bar"></div>
+    <div [ngClass]="{selected: getCurrentNumber() > 7}" class="bar"></div>
+    <div [ngClass]="{selected: getCurrentNumber() > 8}" class="bar"></div>
+    <div [ngClass]="{selected: getCurrentNumber() > 9}" class="bar"></div>
+  </div>
+  <div class="playbutton"></div>
+<!-- </div> -->

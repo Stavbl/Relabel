@@ -48,6 +48,9 @@ background-position: center;
 background-size: cover;
 border-top: 2px solid #CACACA;
 }
+.menu_container {
+    z-index: 1000;
+}
 #playlist_popup #tab {
     background: #2f2f2f;
     position: absolute;

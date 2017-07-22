@@ -119,30 +119,6 @@ export class PlaylistPlayerComponent implements OnInit, AfterViewInit {
       clearInterval(this.interval);
     }
     this.interval = setInterval(this.updateGraph.bind(this), 33);
-
-    // cnvs.addEventListener("mousemove", function(e) {
-
-    //   var percent = cnvs.offsetWidth / 600;
-    //   var margin = 75 * percent;
-    //   var wP = (e.clientX - margin-9) / (cnvs.offsetWidth - (margin*2));
-    //   if (wP >= 0 && wP <= 1) {
-    //   this.selectedBar = (Math.floor(150 * wP));
-    //   }
-    // });
-
-    // cnvs.addEventListener("click",  function(e) {
-    //   if (this.selectedBar >= 0 && this.selectedBar < 150) {
-    //     var p = ((this.selectedBar+1)/150);
-    //     var seconds = p * this.totalTime;
-    //     this.time = Math.floor(new Date().getTime()/1000) - seconds;
-    //   }
-    // })
-
-    // cnvs.addEventListener("mouseout", function(e) {
-
-    //   this.selectedBar = -1
-    
-    // });
   }
 
   next() {

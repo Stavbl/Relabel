@@ -39,5 +39,15 @@ export class LoginComponent implements OnInit {
       
     }); 
   }
+  isLogedIn() {
+    if(this.user && this.user.token)
+      return true;
+    var usr = localStorage.getItem('currentUser');
+    if(usr !== null) {
+      this.user = JSON.parse(usr)
+      return true;
+    }
+    return false;
+  }
 
 }

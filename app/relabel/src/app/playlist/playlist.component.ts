@@ -5,6 +5,7 @@ import { Playlist } from "../models/playlist";
 import { TrackService } from "../services/track.service";
 import { PlaylistService } from "../services/playlist.service";
 import { PlaylistPlayerService } from "../services/playlist-player.service";
+import { MiniPlayerService } from "../services/mini-player.service";
 
 @Component({
   selector: 'app-playlist',
@@ -20,7 +21,7 @@ export class PlaylistComponent implements OnInit {
   elm;
   selectedPlaylist;
 
-  constructor(private tracktService: TrackService, private playlistPlayerService: PlaylistPlayerService, private playlistService: PlaylistService) { }
+  constructor(private tracktService: TrackService, private playlistPlayerService: PlaylistPlayerService, private playlistService: PlaylistService, private mps: MiniPlayerService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
@@ -51,8 +52,7 @@ export class PlaylistComponent implements OnInit {
       console.log("on select - " + playlist.tracks[0]);
       this.playlistPlayerService.load(playlist);
       this.playlistSelected = playlist;
-      // this.playlistService.playlistSelected.emit(playlist)
-      
+      this.mps.itemSelected.emit(null);
   }
 
   closePlaylist() {

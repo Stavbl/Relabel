@@ -19,6 +19,11 @@
             <button class="btn btn-success" >update</button>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-12" *ngFor="let pf of pref">
+            <pref [prf]="pf"></pref>
+          </div>
+        </div>
       </div>
     </div>
   </form>

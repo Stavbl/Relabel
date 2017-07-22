@@ -13,7 +13,7 @@
               <h3>[{{t.name}}]</h3>
               <h4><{{t.artist}}></h4>
               <h5>|{{t.album}}|</h5>
-              <div class="btn-group" appDropdown>
+              <div class="btn-group" (click)="$event.stopPropagation();" appDropdown>
                 <button type="button" class="btn btn-primary dropdown-toggle">More
                   <span class="caret"></span>
                 </button>

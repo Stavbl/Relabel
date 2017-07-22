@@ -30,6 +30,7 @@ import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import { AlertsComponent } from './alerts/alerts.component';
 import { PlaylistPlayerComponent } from './playlist-player/playlist-player.component';
 import { PlaylistPlayerService } from "./services/playlist-player.service";
+import { PrefComponent } from './preferences/pref/pref.component';
 
 
 
@@ -48,7 +49,8 @@ import { PlaylistPlayerService } from "./services/playlist-player.service";
     MainMenuComponent,
     MiniPlayerComponent,
     AlertsComponent,
-    PlaylistPlayerComponent
+    PlaylistPlayerComponent,
+    PrefComponent
   ],
   imports: [
     BrowserModule,
