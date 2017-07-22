@@ -13,6 +13,8 @@ import { User } from "../models/user";
 export class LoginComponent implements OnInit {
     user: User;
     model: any = {};
+    username: string = 'aaabbb';
+    password: string = 'bbbbbb';
 
   constructor(private loginservice: LoginService,
               public router: Router,
@@ -40,14 +42,17 @@ export class LoginComponent implements OnInit {
       
     }); 
   }
-  isLogedIn() {
-    if(this.user && this.user.token)
-      return true;
-    var usr = localStorage.getItem('currentUser');
-    if(usr !== null) {
-      this.user = JSON.parse(usr)
-      return true;
-    }
-    return false;
+  submit() {
+    
   }
+  // isLogedIn() {
+  //   if(this.user && this.user.token)
+  //     return true;
+  //   var usr = localStorage.getItem('currentUser');
+  //   if(usr !== null) {
+  //     this.user = JSON.parse(usr)
+  //     return true;
+  //   }
+  //   return false;
+  // }
 }

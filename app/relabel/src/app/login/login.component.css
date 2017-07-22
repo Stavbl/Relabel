@@ -1,0 +1,16 @@
+.background {
+    background-image: url("../../assets/prefBackground.png");
+}
+#earphones {
+    background-image: url("../../assets/earphone_circle.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 300px;
+    width: 300px;
+    margin: auto;
+    margin-top: 100px;
+}
+input {
+    background-color: none;
+}
