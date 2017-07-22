@@ -19,7 +19,7 @@
             <a class="playlist" (click)="addNewPlaylist()">
               <h3>New Playlist</h3>
               <input type="text" name="playlistName" placeholder="playlist name" 
-              [value]="playlistName" 
+                [value]="playlistName" 
               (input)="playlistName = $event.target.value" 
               (click)="$event.stopPropagation();">
             </a>
