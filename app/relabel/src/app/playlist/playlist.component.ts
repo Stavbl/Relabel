@@ -65,7 +65,7 @@ export class PlaylistComponent implements OnInit {
   addNewPlaylist(){
     this.playlistService.addNewPlaylist(this.user._id, this.playlistName).then((res)=> {
        console.log(res);
-       this.router.navigate(['./playlists'])
+       this.router.navigate(['./dashboard'])
      });
   }
 

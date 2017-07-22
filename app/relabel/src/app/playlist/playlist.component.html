@@ -14,12 +14,15 @@
               <h4 *ngIf="p.tracks.length>0">track: {{p.tracks[0].name}}</h4>
             </a>
           </div>
-          <div>
+        </div>
+        <div>
             <a class="playlist" (click)="addNewPlaylist()">
               <h3>New Playlist</h3>
-              <input type="text" name="playlistName" placeholder="playlist name" [value]="playlistName" (input)="playlistName = $event.target.value">
+              <input type="text" name="playlistName" placeholder="playlist name" 
+              [value]="playlistName" 
+              (input)="playlistName = $event.target.value" 
+              (click)="$event.stopPropagation();">
             </a>
-          </div>
         </div>
       </div>
     </div>
