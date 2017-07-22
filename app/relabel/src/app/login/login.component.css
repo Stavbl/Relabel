@@ -12,5 +12,30 @@
     margin-top: 100px;
 }
 input {
-    background-color: none;
+    margin: auto;
+    width: 300px;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    border-bottom: 1px solid #b7b7b7;
+    border-radius: 0px;
+    color:#a7a7a7;
+    font-family: Helvetica;
+    font-size: 20px;
+    margin-top: 20px;
+    padding-bottom: 15px;
+}
+input:first-child {
+    margin-top: 50px;
+}
+#eco {
+    background-image: url("../../assets/eco.png");
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 40%;
+    margin:auto;
+    margin-top: 70px;
+}
+#success {
+    display: none;
 }

@@ -4,3 +4,10 @@
     border-radius: 0px;
     margin-bottom: 0px;
 }
+
+a.dropdown-toggle {
+    margin-right: 20px;
+}
+ul .dropdown-menu {
+    margin-right: 20px;
+}
