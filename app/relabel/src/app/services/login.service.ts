@@ -19,17 +19,20 @@ export class LoginService {
         localStorage.removeItem('currentUser');
         this.currentUser.emit(null);
     }
-    private addJwt(options?: RequestOptionsArgs): RequestOptionsArgs {
-        // ensure request options and headers are not null
-        options = options || new RequestOptions();
-        options.headers = options.headers || new Headers();
-
-        // add authorization header with jwt token
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.token) {
-            options.headers.append('Authorization', 'Bearer ' + currentUser.token);
-        }
-
-        return options;
+  create(username:string, password:string, options?: RequestOptionsArgs): Promise<User> {
+      return this.http.post(this.base_url + '/register',{username,password}, this.addJwt(options)).toPromise().then((res) => res.json() as User);
     }
+  private addJwt(options?: RequestOptionsArgs): RequestOptionsArgs {
+      // ensure request options and headers are not null
+      options = options || new RequestOptions();
+      options.headers = options.headers || new Headers();
+
+      // add authorization header with jwt token
+      let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      if (currentUser && currentUser.token) {
+          options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+      }
+
+      return options;
+  }
 }

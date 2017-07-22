@@ -3,9 +3,10 @@ var mongoose = require('mongoose'),
     userSchema = new schema({
       username:  {type:String, index:1, required:true, unique:true},
       password:   {type:String, required:true},
-      email:      {type:String, required:true},
+      email:      {type:String},
       preferences:   [
         {
+          _id : false,
           name: String,
           value: Number
         }

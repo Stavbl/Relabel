@@ -39,9 +39,9 @@ function login(req, res) {
 }
 
 function register(req, res) {
-    userService.create(req.body)
+    userService.create(req.body.username, req.body.password)
         .then(function () {
-            res.sendStatus(200);
+            login(req, res);
         })
         .catch(function (err) {
             res.status(400).send(err);

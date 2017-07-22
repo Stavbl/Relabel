@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { AuthGuard } from './authGuard/auth.guard';
 import { LandingPageComponent } from "./landing-page/landing-page.component";
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes =[
     { path: '', redirectTo: '/landing', pathMatch:'full'},
@@ -14,6 +15,7 @@ const appRoutes: Routes =[
     { path: 'getPref', component: PreferencesComponent, canActivate: [AuthGuard]},
     { path: 'playlist', component: PlaylistComponent, canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent},
+    { path: 'register', component: RegisterComponent},
     { path: 'landing', component: LandingPageComponent}
 ];
 

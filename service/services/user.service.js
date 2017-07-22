@@ -17,7 +17,7 @@ service.setPref                 = setPref;
 service.getUser                 = getUser;
 service.addTrackToPlaylist      = addTrackToPlaylist;
 service.removeTrackFromPlaylist = removeTrackFromPlaylist;
-// service.update = update;
+service.create = create;
 // service.delete = _delete;
 
 module.exports = service;
@@ -30,6 +30,49 @@ function getData(req,res){
         res.json(docs);
         return;
     });
+}
+
+function create(username, password){
+    var preferences = [];
+    preferences.push({"name":"detriot","value":0});
+    preferences.push({"name":"hard","value":0});
+    preferences.push({"name":"dance","value":0});
+    preferences.push({"name":"minimal","value":0});
+    preferences.push({"name":"classic","value":0});
+    preferences.push({"name":"house","value":0});
+    preferences.push({"name":"vgm","value":0});
+    preferences.push({"name":"hard_acid","value":0});
+    preferences.push({"name":"electro","value":0});
+    return new Promise((resolve, reject) => {
+      User.findOne({username: username},
+        (err, user) => {
+          if(err) {
+            reject({"error": err});
+            console.log('REGISTER STATUS: FAILED');
+          }
+          
+          if(user) {
+            console.log("info : exist username");
+            return resolve({"info": " exist username"});
+          }
+          else{
+            console.log('REGISTER STATUS: SUCCESS ' + username);
+            var newUser = new User({
+              username : username,
+              password : password,
+              preferences : preferences
+            });
+            newUser.save(
+              (err) => {
+                if(err)
+                  console.log('error: ' + err);
+                else
+                  console.log("save new user");
+                  resolve();
+              });
+        }
+    });
+  });
 }
 
 function getUserById(userId){
