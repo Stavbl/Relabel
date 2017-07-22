@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class TrackService {
   itemSelected = new EventEmitter<Track>();
-  private base_url: String = 'http://localhost:3000/tracks';
+  private base_url: String = 'https://relabel--service.herokuapp.com/tracks';
 
   constructor(private http: Http,  defaultOptions: RequestOptions) { }
 

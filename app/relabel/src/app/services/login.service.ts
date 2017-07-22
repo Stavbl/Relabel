@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class LoginService {
 // https://relabel--service.herokuapp.com/
-  private base_url: String = 'http://localhost:3000/users';
+  private base_url: String = 'https://relabel--service.herokuapp.com/users';
   public currentUser = new EventEmitter<User>();
 
   constructor(private http: Http) { }

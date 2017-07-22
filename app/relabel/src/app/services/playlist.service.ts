@@ -8,7 +8,7 @@ import { Playlist } from "app/models/playlist";
 export class PlaylistService {
   playlistSelected = new EventEmitter<Playlist>();
 
-  private base_url: String = 'http://localhost:3000/users';
+  private base_url: String = 'https://relabel--service.herokuapp.com/users';
 
   constructor(private http: Http,  defaultOptions: RequestOptions) { }
 
@@ -22,6 +22,10 @@ export class PlaylistService {
 
   addNewPlaylist(userId:string, playlistName: string,options?: RequestOptionsArgs): Promise<string> { 
     return this.http.post(this.base_url + '/addNewPlaylist',{userId,playlistName}, this.addJwt(options)).toPromise().then((res) => res.json() as string);
+  }
+
+  removePlaylist(userId:string, playlistName: string,options?: RequestOptionsArgs): Promise<string> { 
+    return this.http.post(this.base_url + '/removePlaylist',{userId,playlistName}, this.addJwt(options)).toPromise().then((res) => res.json() as string);
   }
 
   private addJwt(options?: RequestOptionsArgs): RequestOptionsArgs {

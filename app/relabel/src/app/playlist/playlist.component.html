@@ -11,7 +11,14 @@
           <div class="col-md-3" *ngFor="let p of r" >
             <a class="playlist" (click)="onSelected(p, $event)">
               <h3><{{p.name}}></h3>
-              <h4 *ngIf="p.tracks.length>0">track: {{p.tracks[0].name}}</h4>
+              <h4 *ngIf="p.tracks.length>0">[Length]: {{p.tracks.length}}</h4>
+              <div class="btn-group" (click)="$event.stopPropagation();" appDropdown>
+                <button type="button" class="btn btn-primary dropdown-toggle more">. . .
+                </button>
+                  <ul class="dropdown-menu">
+                    <li><div class="option" (click)="removePlaylist(p.name)">Remove</div></li>
+                  </ul>
+              </div>
             </a>
           </div>
         </div>
