@@ -6,13 +6,15 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { LoginComponent } from './login/login.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { AuthGuard } from './authGuard/auth.guard';
+import { LandingPageComponent } from "./landing-page/landing-page.component";
 
 const appRoutes: Routes =[
-    { path: '', redirectTo: '/login', pathMatch:'full'},
+    { path: '', redirectTo: '/landing', pathMatch:'full'},
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
     { path: 'getPref', component: PreferencesComponent, canActivate: [AuthGuard]},
     { path: 'playlist', component: PlaylistComponent, canActivate: [AuthGuard]},
-    { path: 'login', component: LoginComponent}
+    { path: 'login', component: LoginComponent},
+    { path: 'landing', component: LandingPageComponent}
 ];
 
 @NgModule({

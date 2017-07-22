@@ -31,6 +31,7 @@ import { AlertsComponent } from './alerts/alerts.component';
 import { PlaylistPlayerComponent } from './playlist-player/playlist-player.component';
 import { PlaylistPlayerService } from "./services/playlist-player.service";
 import { PrefComponent } from './preferences/pref/pref.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 
@@ -50,7 +51,8 @@ import { PrefComponent } from './preferences/pref/pref.component';
     MiniPlayerComponent,
     AlertsComponent,
     PlaylistPlayerComponent,
-    PrefComponent
+    PrefComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,

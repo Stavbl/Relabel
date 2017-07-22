@@ -1,0 +1,25 @@
+.background {
+    background-image: url("../../assets/landing_background.png");
+}
+#buttons {
+    margin-top: 250px;
+}
+a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: Helvetica;
+    width: 50%;
+    margin: auto;
+    font-size: 20px;
+    border: 1px solid #fefefe;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    padding: 10px 0px 10px 0px;
+    box-sizing: border-box;
+}
+a:hover {
+    background-color: #fefefe;
+    color: #0d0d0d;
+}
