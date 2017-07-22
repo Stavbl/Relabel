@@ -8,7 +8,7 @@ import { LoginService } from "../services/login.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-   currentUser: User;
+  currentUser: User;
 
   constructor(private loginService: LoginService) { }
 

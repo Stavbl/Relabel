@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 export class LoginService {
 // https://relabel--service.herokuapp.com/
   private base_url: String = 'http://localhost:3000/users';
-  currentUser = new EventEmitter<User>();
+  public currentUser = new EventEmitter<User>();
 
   constructor(private http: Http) { }
 
