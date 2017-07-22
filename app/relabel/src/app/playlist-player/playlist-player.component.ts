@@ -16,7 +16,7 @@ export class PlaylistPlayerComponent implements OnInit, AfterViewInit {
   totalTime = 0;
   interval;
 
-  constructor(private pps:PlaylistPlayerService) { }
+  constructor(public pps:PlaylistPlayerService) { }
 
   ngOnInit() {
   }

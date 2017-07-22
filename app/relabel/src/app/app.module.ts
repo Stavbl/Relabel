@@ -8,7 +8,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
-import { PlayerComponent } from './dashboard/player/player.component';
 
 // Added imports
 import {RouterModule } from '@angular/router';
@@ -21,7 +20,6 @@ import { PlayerService } from "./services/player.service";
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './authGuard/auth.guard';
 import { AppDropdownDirective } from './directives/app-dropdown.directive';
-import { PlayerViewComponent } from './dashboard/player/player-view/player-view.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { MiniPlayerComponent } from './mini-player/mini-player.component';
@@ -45,8 +43,6 @@ import { RegisterComponent } from './register/register.component';
     HeaderComponent,
     LoginComponent,
     AppDropdownDirective,
-    PlayerComponent,
-    PlayerViewComponent,
     PlaylistComponent,
     MainMenuComponent,
     MiniPlayerComponent,
