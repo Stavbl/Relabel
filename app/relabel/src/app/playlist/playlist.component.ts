@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {Routes,RouterModule, Router} from '@angular/router';
 import { Track } from "../models/track";
 import { User } from "../models/user";
 import { Playlist } from "../models/playlist";
@@ -20,8 +21,14 @@ export class PlaylistComponent implements OnInit {
   playlistSelected:Playlist;
   elm;
   selectedPlaylist;
+  playlistName: string = '';
 
-  constructor(private tracktService: TrackService, private playlistPlayerService: PlaylistPlayerService, private playlistService: PlaylistService, private mps: MiniPlayerService) { }
+
+  constructor(private tracktService: TrackService,
+              private playlistPlayerService: PlaylistPlayerService, 
+              private playlistService: PlaylistService,
+              public router: Router, 
+              private mps: MiniPlayerService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
@@ -53,6 +60,13 @@ export class PlaylistComponent implements OnInit {
       this.playlistPlayerService.load(playlist);
       this.playlistSelected = playlist;
       this.mps.itemSelected.emit(null);
+  }
+
+  addNewPlaylist(){
+    this.playlistService.addNewPlaylist(this.user._id, this.playlistName).then((res)=> {
+       console.log(res);
+       this.router.navigate(['./playlists'])
+     });
   }
 
   closePlaylist() {

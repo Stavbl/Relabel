@@ -16,6 +16,7 @@ service.getPlaylistsById        = getPlaylistsById;
 service.setPref                 = setPref;
 service.getUser                 = getUser;
 service.addTrackToPlaylist      = addTrackToPlaylist;
+service.addNewPlaylist          = addNewPlaylist;
 service.removeTrackFromPlaylist = removeTrackFromPlaylist;
 service.create = create;
 // service.delete = _delete;
@@ -30,6 +31,25 @@ function getData(req,res){
         res.json(docs);
         return;
     });
+}
+
+function addNewPlaylist(userId, playlistName){
+  console.log('Trace: addTrackToPlaylist('+userId+','+playlistName+')');
+  return new Promise((resolve, reject) => {
+    let user = getUserById(userId).then((user)=> {
+      user.playlists.push({"name":playlistName, "tracks":[]});
+      user.save((err) => {
+        if(err){
+          console.log(`err: ${err}`);
+          resolve(false);
+          return;
+        }
+        else
+          console.log(`Saved document: ${user.username}`);
+      });
+    resolve(true);
+    });
+  });
 }
 
 function create(username, password){

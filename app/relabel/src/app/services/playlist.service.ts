@@ -20,6 +20,10 @@ export class PlaylistService {
     return this.http.post(this.base_url + '/addTrackToPlaylist',{userId,trackId,playlistName}, this.addJwt(options)).toPromise().then((res) => res.json() as string);
   }
 
+  addNewPlaylist(userId:string, playlistName: string,options?: RequestOptionsArgs): Promise<string> { 
+    return this.http.post(this.base_url + '/addNewPlaylist',{userId,playlistName}, this.addJwt(options)).toPromise().then((res) => res.json() as string);
+  }
+
   private addJwt(options?: RequestOptionsArgs): RequestOptionsArgs {
         // ensure request options and headers are not null
         options = options || new RequestOptions();
