@@ -14,11 +14,10 @@
               <h4><{{t.artist}}></h4>
               <h5>|{{t.album}}|</h5>
               <div class="btn-group" (click)="$event.stopPropagation();" appDropdown>
-                <button type="button" class="btn btn-primary dropdown-toggle">More
-                  <span class="caret"></span>
+                <button type="button" class="btn btn-primary dropdown-toggle more">. . .
                 </button>
                   <ul class="dropdown-menu">
-                    <li *ngFor="let p of playlists"><button (click)="addTrackToPlaylist(t._id,p.name)">{{p.name}}</button></li>
+                    <li *ngFor="let p of playlists"><div class="playlist" (click)="addTrackToPlaylist(t._id,p.name)">{{p.name}}</div></li>
                   </ul>
               </div>
             </a>
@@ -28,17 +27,3 @@
     </div>
   </div>
 </div>
-
-<!--<app-player
-  *ngIf="trackSelected; else helpText"
-  [track]=trackSelected
-  >
-</app-player>
-<ng-template #helpText>
-    <h4>select track</h4>
-</ng-template>
-
-<div class="col-md-6 col-md-offset-3">
-    <h1>Hi {{user?.username}}!</h1>
-    <p><a [routerLink]="['/login']">Logout</a></p>
-</div>-->

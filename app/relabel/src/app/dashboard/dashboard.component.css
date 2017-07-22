@@ -10,6 +10,7 @@
     padding-left: 25px;
     font-family: Verdana;
     text-decoration: none;
+    overflow: scroll;
 }
 .dashboard_track:hover {
     border: 1px solid #ffffff;
@@ -34,4 +35,30 @@ h1 {
 .dashboard_track h5 {
     font-size: 12px;
     color: #727272;
+}
+.more {
+    background: transparent;
+    border: none;
+}
+.more:hover {
+    font-weight: bold;
+}
+.moree {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+.dropdown-menu {
+    background-color:  rgba(0,0,0,0.75);
+    border: 1px solid #ffffff;
+}
+.playlist {
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+}
+.playlist:hover {
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
 }
