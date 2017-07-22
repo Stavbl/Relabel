@@ -3,7 +3,8 @@
   <form (ngSubmit)="updatePref()" #f="ngForm">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
-        <div *ngFor="let pf of pref" class="row form-group">
+
+<!--         <div *ngFor="let pf of pref" class="row form-group">
           <div class="col-md-3">
             <label for="amount">{{pf.name}}</label>
           </div>
@@ -13,17 +14,18 @@
               [name]="pf.name"
               [(ngModel)]="pf.value">
           </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <button class="btn btn-success" >update</button>
-          </div>
-        </div>
+        </div> -->
+
         <div class="row">
           <div class="col-md-12" *ngFor="let pf of pref">
             <pref [prf]="pf"></pref>
           </div>
         </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success" >update</button>
+          </div>
+        </div>      
       </div>
     </div>
   </form>
