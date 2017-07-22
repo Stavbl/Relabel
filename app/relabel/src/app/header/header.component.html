@@ -5,12 +5,19 @@
 
     <div class="navbar-default">
         <ul class="nav navbar-nav">
-            <li routerLinkActive="active">
-                <a routerLink="/getPref">Preferences</a>
-            </li>
             <li>
                 <mini-player></mini-player>
             </li>
         </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="currentUser != null">
+                <li class="dropdown" appDropdown>
+                    <a  class="dropdown-toggle" role="button">{{currentUser.username}}
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a routerLink="/getPref">Preferences</a></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
     </div>
 </nav>

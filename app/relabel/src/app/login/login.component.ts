@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('currentUser', JSON.stringify(usr));
             this.user = JSON.parse(localStorage.getItem('currentUser'));
             console.log(this.user.username);
+            this.loginservice.currentUser.emit(this.user);
             this.router.navigate(['./dashboard'])
             }
         else{
