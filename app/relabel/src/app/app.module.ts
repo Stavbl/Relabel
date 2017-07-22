@@ -32,6 +32,7 @@ import { PlaylistPlayerComponent } from './playlist-player/playlist-player.compo
 import { PlaylistPlayerService } from "./services/playlist-player.service";
 import { PrefComponent } from './preferences/pref/pref.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -52,7 +53,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     AlertsComponent,
     PlaylistPlayerComponent,
     PrefComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

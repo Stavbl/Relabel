@@ -26,7 +26,7 @@ app.use(expressJwt({
         }
         return null;
     }
-}).unless({ path: ['/users/login'] }));
+}).unless({ path: ['/users/login', '/users/register'] }));
 
 
 app.use(
