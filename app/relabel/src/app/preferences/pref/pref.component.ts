@@ -21,15 +21,15 @@ export class PrefComponent implements OnInit {
   constructor(private prefservice: PrefService, private mps:MiniPlayerService) { }
 
   ngOnInit() {
-    this.mps.itemSelected.subscribe((url) => {
-      this.currentTrack = url;
-      if (this.currentTrack == null) {
-        this.mps.Stop();
-        return; 
-      }
-      this.mps.LoadUrl(url);
-      this.play(url);
-    })
+    // this.mps.itemSelected.subscribe((url) => {
+    //   this.currentTrack = url;
+    //   if (this.currentTrack == null) {
+    //     this.mps.Stop();
+    //     return; 
+    //   }
+    //   this.mps.LoadUrl(url);
+    //   this.play(url);
+    // })
   }
 
   barMouseMove(event) {
@@ -53,24 +53,21 @@ export class PrefComponent implements OnInit {
       return this.prf.value;
       }
   }
-  play(url) {
-    // if(!this.playing){
-    //   this.mps.LoadUrl(url);
-    // }
-    this.mps.LoadUrl(url);
-    this.mps.Play();
-    this.playing = true;
-  }
-  pause() {
-    this.mps.Pause();
-  }
-  LoadUrl(genre:string) {
-    switch(genre) {
-      case 'detriot' :
-        this.play('https://s3.amazonaws.com/relabel/Pan+Pot+-+Sleepless+(Stephan+Bodzin+Remix+)+%5B128BPM%5D.mp3');
-        break;
-      case 'hard' :
-        break;
-    }
-  }
+  // play(url) {
+  //   this.mps.LoadUrl(url);
+  //   this.mps.Play();
+  //   this.playing = true;
+  // }
+  // pause() {
+  //   this.mps.Pause();
+  // }
+  // LoadUrl(genre:string) {
+  //   switch(genre) {
+  //     case 'detriot' :
+  //       this.play('https://s3.amazonaws.com/relabel/Pan+Pot+-+Sleepless+(Stephan+Bodzin+Remix+)+%5B128BPM%5D.mp3');
+  //       break;
+  //     case 'hard' :
+  //       break;
+  //   }
+  // }
 }
