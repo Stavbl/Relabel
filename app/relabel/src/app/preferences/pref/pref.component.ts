@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PrefService } from "../../services/pref.service";
 import { Pref } from "../../models/pref";
 import { User } from "../../models/user";
+import { MiniPlayerService } from "../../services/mini-player.service";
+import { Track } from '../../models/track';
 
 @Component({
   selector: 'pref',
@@ -13,14 +15,21 @@ export class PrefComponent implements OnInit {
   user: User
   fullbar = document.getElementById("fullbar");
   num = null;
+  currentTrack: Track = null;
+  playing:boolean = false;
 
-  constructor(private prefservice: PrefService) { }
+  constructor(private prefservice: PrefService, private mps:MiniPlayerService) { }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
-    // this.prefservice.getPrefById(this.user._id).then((p) => {
-    //   this.prf = p; 
-    // });
+    this.mps.itemSelected.subscribe((url) => {
+      this.currentTrack = url;
+      if (this.currentTrack == null) {
+        this.mps.Stop();
+        return; 
+      }
+      this.mps.LoadUrl(url);
+      this.play(url);
+    })
   }
 
   barMouseMove(event) {
@@ -43,5 +52,25 @@ export class PrefComponent implements OnInit {
     } else {
       return this.prf.value;
       }
+  }
+  play(url) {
+    // if(!this.playing){
+    //   this.mps.LoadUrl(url);
+    // }
+    this.mps.LoadUrl(url);
+    this.mps.Play();
+    this.playing = true;
+  }
+  pause() {
+    this.mps.Pause();
+  }
+  LoadUrl(genre:string) {
+    switch(genre) {
+      case 'detriot' :
+        this.play('https://s3.amazonaws.com/relabel/Pan+Pot+-+Sleepless+(Stephan+Bodzin+Remix+)+%5B128BPM%5D.mp3');
+        break;
+      case 'hard' :
+        break;
+    }
   }
 }

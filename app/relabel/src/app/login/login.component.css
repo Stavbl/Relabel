@@ -31,6 +31,7 @@ input:first-child {
 #eco {
     background-image: url("../../assets/eco.png");
     background-repeat: no-repeat;
+    background-position: center;
     height: 100px;
     width: 40%;
     margin:auto;

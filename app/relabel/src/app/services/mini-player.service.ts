@@ -25,4 +25,8 @@ export class MiniPlayerService {
   Pause() {
     this.audio.pause();
   }
+  LoadUrl(url:string) {
+    this.audio.src = url;
+    this.audio.load();
+  }
 }

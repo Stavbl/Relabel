@@ -12,5 +12,5 @@
     <div [ngClass]="{selected: getCurrentNumber() > 8}" class="bar"></div>
     <div [ngClass]="{selected: getCurrentNumber() > 9}" class="bar"></div>
   </div>
-  <div class="playbutton"></div>
+  <div class="playbutton" [(ngModel)]="prf.name" (click)=LoadUrl(prf.name)></div>
 <!-- </div> -->

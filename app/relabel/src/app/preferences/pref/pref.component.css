@@ -1,7 +1,10 @@
 .pref {
   width: 100%;
   margin:auto;
-  margin-top:30px;
+  height: 45px;
+  margin-top:16px;
+  box-sizing: border-box;
+  text-align: center;
 }
 .pref > div {
   display: inline-block;
@@ -12,15 +15,30 @@
   font-size: 18px;
   font-weight: normal;
   text-transform: uppercase;
+  width: 30%;
+  text-align: left;
 }
 .bar {
   display: inline-block;
   background-color: #5e5e5e;
-  width:2px;
+  width:5px;
+  margin-right: 4px;
   height: 16px;
 }
 
 .bar.selected {
   background-color: #ffffff;
-  height: 20px;
+  height: 24px;
+}
+.playbutton {
+  background-image: url("../../../assets/play_sample.png");
+  height: 26px;
+  width: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-left: 25px;
+}
+.playbutton:hover {
+  background-image: url("../../../assets/play_sample_hover.png");
 }

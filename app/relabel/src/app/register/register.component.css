@@ -1,0 +1,68 @@
+.background {
+    background-image: url("../../assets/prefBackground.png");
+}
+#earphones {
+    background-image: url("../../assets/earphone_circle.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 300px;
+    width: 300px;
+    margin: auto;
+    margin-top: 20px;
+}
+input {
+    margin: auto;
+    width: 300px;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    border-bottom: 1px solid #b7b7b7;
+    border-radius: 0px;
+    color:#a7a7a7;
+    font-family: Helvetica;
+    font-size: 20px;
+    padding-bottom: 15px;
+}
+#eco {
+    background-image: url("../../assets/eco2.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100px;
+    width: 40%;
+    margin:auto;
+    margin-top: 10px;
+}
+.form-group {
+    margin-bottom: 0px;
+    max-height: 55px;
+}
+
+
+h2 {
+    margin: 0px;
+    margin-top: 10px;
+    text-align: center;
+    color: #ffffff;
+    font-family: Helvetica;
+}
+.btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: Helvetica;
+    width: 40%;
+    margin: auto;
+    font-size: 20px;
+    border: 1px solid #fefefe;
+    border-radius: 8px;
+    padding: 10px 0px 10px 0px;
+    box-sizing: border-box;
+    background-color: transparent;
+    display: inline-block;
+}
+.btn:hover {
+    background-color: #fefefe;
+    color: #0d0d0d;
+}

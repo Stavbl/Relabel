@@ -10,7 +10,6 @@
     padding-left: 25px;
     font-family: Verdana;
     text-decoration: none;
-    overflow: scroll;
 }
 .dashboard_track:hover {
     border: 1px solid #ffffff;
