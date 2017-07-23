@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
 
   onSelected(track: Track){
       console.log("on select - " + track.name);
-      // this.alertService.clear();
+      this.alertService.clear();
       this.mps.itemSelected.emit(track)
       this.pps.pause();
   }
