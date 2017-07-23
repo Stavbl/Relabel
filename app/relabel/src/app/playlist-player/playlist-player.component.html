@@ -4,6 +4,16 @@
   </div>
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
+      <div *ngIf="currentTrack != null">
+        <div class="labels">
+          <label class="lbl dj">DJ</label> 
+          <label class="artist">[{{currentTrack.artist}}]</label>
+        </div>
+        <div class="labels">
+          <label class="lbl">Name</label>
+          <label class="name"> <{{currentTrack.name}}> </label>
+        </div>
+      </div>
       <canvas width="600" height="150" id="cnvs"></canvas>
       <p id="time">10:01</p>
     </div>

@@ -25,8 +25,7 @@ export class LoginComponent implements OnInit {
       this.loginservice.logout();
   }
   login(form:NgForm){
-    const val = form.value;
-    console.log(val);   
+    const val = form.value;   
     this.loginservice.login(val.username,val.password).then((usr) => {
       if (usr && usr.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes

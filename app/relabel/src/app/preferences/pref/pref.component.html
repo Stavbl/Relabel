@@ -12,4 +12,4 @@
     <div [ngClass]="{selected: getCurrentNumber() > 8}" class="bar"></div>
     <div [ngClass]="{selected: getCurrentNumber() > 9}" class="bar"></div>
   </div>
-  <div class="playbutton"></div>
+  <div class="" [ngClass]="{'pausebutton': this.isPlaying && this.playing === prf.name, 'playbutton': !this.isPlaying}" (click)="LoadUrl(prf.name)"></div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { PlaylistPlayerService } from '../services/playlist-player.service';
+import { Track } from '../models/track';
 
 @Component({
   selector: 'playlist-player',
@@ -15,6 +16,7 @@ export class PlaylistPlayerComponent implements OnInit, AfterViewInit {
   time = 0;
   totalTime = 0;
   interval;
+  currentTrack:Track = null;
 
   constructor(public pps:PlaylistPlayerService) { }
 
@@ -91,21 +93,20 @@ export class PlaylistPlayerComponent implements OnInit, AfterViewInit {
           val: Math.random() >=  0.5 ? 1 : -1,
           times: 0
         }
-      }  
+      }
+      this.currentTrack = this.pps.getCurrentTrack();  
     }
-    
+
     var timeElapsed = this.pps.getCurrentTime();
     var minutes= Math.floor(timeElapsed/60);
     var seconds = timeElapsed - minutes * 60;
-    this.timeText.innerHTML = (("0" + minutes).substr(-2)) + ":" + (("0" + seconds).substr(-2))
+    this.timeText.innerHTML = (("0" + minutes).substr(-2)) + ":" + (("0" + seconds).substr(-2));
     this.drawGraph(timeElapsed/this.pps.getTotalTime());
   }
   loadCanvas() {
     var cnvs:any = document.getElementById("cnvs");
     var ctx = this.ctx = cnvs.getContext("2d");
-    var timeText = this.timeText = document.getElementById("time");
-
-    
+    var timeText = this.timeText = document.getElementById("time");    
 
     this.graph = this.setupGraph();
     this.selectedBar = -1;
@@ -113,7 +114,6 @@ export class PlaylistPlayerComponent implements OnInit, AfterViewInit {
     this.dx = {};
 
     this.time = Math.floor(new Date().getTime()/1000);
-
 
     if (this.interval >= 0) {
       clearInterval(this.interval);

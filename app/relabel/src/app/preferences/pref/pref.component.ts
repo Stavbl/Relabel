@@ -16,20 +16,12 @@ export class PrefComponent implements OnInit {
   fullbar = document.getElementById("fullbar");
   num = null;
   currentTrack: Track = null;
-  playing:boolean = false;
+  playing:string = '';
+  isPlaying = false;
 
   constructor(private prefservice: PrefService, private mps:MiniPlayerService) { }
 
   ngOnInit() {
-    // this.mps.itemSelected.subscribe((url) => {
-    //   this.currentTrack = url;
-    //   if (this.currentTrack == null) {
-    //     this.mps.Stop();
-    //     return; 
-    //   }
-    //   this.mps.LoadUrl(url);
-    //   this.play(url);
-    // })
   }
 
   barMouseMove(event) {
@@ -53,21 +45,49 @@ export class PrefComponent implements OnInit {
       return this.prf.value;
       }
   }
-  // play(url) {
-  //   this.mps.LoadUrl(url);
-  //   this.mps.Play();
-  //   this.playing = true;
-  // }
-  // pause() {
-  //   this.mps.Pause();
-  // }
-  // LoadUrl(genre:string) {
-  //   switch(genre) {
-  //     case 'detriot' :
-  //       this.play('https://s3.amazonaws.com/relabel/Pan+Pot+-+Sleepless+(Stephan+Bodzin+Remix+)+%5B128BPM%5D.mp3');
-  //       break;
-  //     case 'hard' :
-  //       break;
-  //   }
+  load(url) {
+    this.mps.LoadUrl(url);
+    this.play()
+  }
+  play() {
+    this.mps.Play();
+    this.isPlaying = true;
+  }
+  pause() {
+    this.mps.Pause();
+    this.isPlaying = false;
+  }
+  LoadUrl(genre:string) {
+    console.log("load " + genre);
+    switch(genre) {
+      case 'detriot' :
+        if(this.playing != 'detriot') {
+          console.log("loading detroit and playing");
+          this.load('https://s3.amazonaws.com/relabel/Pan+Pot+-+Sleepless+(Stephan+Bodzin+Remix+)+%5B128BPM%5D.mp3');
+          this.playing = 'detriot'
+        }
+        else 
+          this.play_pause();
+        break;
+      case 'hard' :
+        if(this.playing != 'hard') {
+          console.log("loading hard and playing");
+          this.load('https://s3.amazonaws.com/relabel/Emmanuel+Top+-+Acid+Phase.mp3');
+          this.playing = 'hard'
+        }
+        else 
+          this.play_pause();
+        break;
+    }
+  }
+  play_pause() {
+    if(this.isPlaying)  
+      this.pause();
+    else  
+      this.play();
+  }
+  // onSelected(genre) {
+  //   this.mps.genreSelected.emit(genre);
+  //   // this.pps.pause();
   // }
 }

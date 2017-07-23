@@ -5,6 +5,7 @@ import { Track } from '../models/track';
 @Injectable()
 export class MiniPlayerService {
   itemSelected = new EventEmitter<Track>();
+  genreSelected = new EventEmitter<string>();
   audio = new Audio();
   constructor() { }
 

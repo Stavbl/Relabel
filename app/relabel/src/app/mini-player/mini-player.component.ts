@@ -15,7 +15,6 @@ export class MiniPlayerComponent implements OnInit {
 
   ngOnInit() {
     this.mps.itemSelected.subscribe((track) => {
-    
       this.currentTrack = track;
       if (this.currentTrack == null) {
         this.mps.Stop();

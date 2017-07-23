@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
                         this.user = JSON.parse(localStorage.getItem('currentUser'));
                         console.log(this.user.username);
                         this.loginService.currentUser.emit(this.user);
-                        this.alertService.success('Registration successful', true);
+                        this.alertService.success('Registration successful');
                         this.router.navigate(['./getPref'])
                     }
                     else {

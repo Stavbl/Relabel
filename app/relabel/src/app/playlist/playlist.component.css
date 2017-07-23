@@ -104,3 +104,41 @@ border-top: 2px solid #CACACA;
     color: #000000;
     cursor: pointer;
 }
+.new {
+  padding-left: 0px;   
+}
+.new h3 {
+    text-align: center;
+}
+.new input {
+    display: block;
+    width: 90%;
+    margin: auto;
+    background-color: transparent;
+    border:none;
+    text-align: center;
+    border-bottom: 1px solid #727272;
+    font-family: Verdana;
+    color: #ffffff;
+    margin-bottom: 30px;
+    margin-top:20px;
+}
+.new button {
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: Helvetica;
+    margin: auto;
+    font-size: 14px;
+    border: 1px solid #fefefe;
+    border-radius: 8px;
+    padding: 10px 0px 10px 0px;
+    box-sizing: border-box;
+    background-color: transparent;
+    display: block;
+    width: 80%;
+}
+.new button:hover {
+    background-color: #fefefe;
+    color: #0d0d0d;
+}

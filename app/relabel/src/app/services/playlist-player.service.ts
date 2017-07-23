@@ -112,4 +112,11 @@ export class PlaylistPlayerService {
     }
     return Math.floor(totalTime);
   }
+  getCurrentTrack() {
+    if(this.currentTrack != -1) {
+      return this.playlist.tracks[this.currentTrack];
+    }
+    else
+      return null;
+  }
 }

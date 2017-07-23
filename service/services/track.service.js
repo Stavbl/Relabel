@@ -32,10 +32,8 @@ exports.getTracksByPref = function(pref) {
         var retTracks = [];
         genreObjectArray.forEach(function(goa) {
           let arrayToConcat = randomizeTracksByGenre(tracks, goa.name, goa.value/genreTotalVal);
-          // console.log("arrayToConcat: " + arrayToConcat);
           retTracks = retTracks.concat(arrayToConcat);
         });
-        // console.log("retTracks:  " + retTracks);
         resolve(retTracks);
         return;
       });
@@ -45,7 +43,6 @@ exports.getTracksByPref = function(pref) {
 randomizeTracksByGenre = function(tracks,genre,precent) {
   let tracksByGenre = [];
   let retTracks     = [];
-  // console.log("randomizing: "+ genre + ", with precent: "+ precent);
   tracks.forEach(function(t){
     t.genre.forEach(function(g) {
       if(g === genre) {
@@ -54,8 +51,6 @@ randomizeTracksByGenre = function(tracks,genre,precent) {
     });
   }); // tracksByGenre got all tracks from this genre
   let numOfTracks = Math.round(precent*10);
-  // console.log("numOfTracks in genre - " + genre + "is: " + numOfTracks);
-  // console.log("tracksByGenre: " + tracksByGenre.length);
   if(tracksByGenre.length < numOfTracks) {
     if(tracksByGenre.length >= 1)
       console.log("tracksByGenre returned with:  " + tracksByGenre);

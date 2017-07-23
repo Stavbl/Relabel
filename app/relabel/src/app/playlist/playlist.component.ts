@@ -52,7 +52,6 @@ export class PlaylistComponent implements OnInit {
   }
 
   onSelected(playlist:Playlist, e){
-      // this.itemSelected.emit();
       var t = e.target;
       for (var i = 0; i < 20; i+=1) {
         if (t.className == "playlist") { break; }
@@ -67,6 +66,8 @@ export class PlaylistComponent implements OnInit {
   }
 
   addNewPlaylist(){
+    if(this.playlistName.length <=0)
+      return;
     this.playlistService.addNewPlaylist(this.user._id, this.playlistName).then((res)=> {
        console.log(res);
        this.router.navigate(['./dashboard'])
