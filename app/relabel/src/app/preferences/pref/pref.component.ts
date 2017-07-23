@@ -78,6 +78,69 @@ export class PrefComponent implements OnInit {
         else 
           this.play_pause();
         break;
+      case 'dance' :
+        if(this.playing != 'dance') {
+          console.log("loading dance and playing");
+          this.load('https://s3.amazonaws.com/relabel/CArl+Cox+-+Jaguar.mp3');
+          this.playing = 'dance'
+        }
+        else 
+          this.play_pause();
+        break;
+      case 'minimal' :
+        if(this.playing != 'minimal') {
+          console.log("loading minimal and playing");
+          this.load('https://s3.amazonaws.com/relabel/Tale+Of+Us+-+Lost+City.mp3');
+          this.playing = 'minimal'
+        }
+        else 
+          this.play_pause();
+        break;
+      case 'classic' :
+        if(this.playing != 'classic') {
+          console.log("loading classic and playing");
+          this.load('https://s3.amazonaws.com/relabel/Foals+-+Late+Night+(Solomun+Remix).mp3');
+          this.playing = 'classic'
+        }
+        else 
+          this.play_pause();
+        break;
+      case 'electro' :
+        if(this.playing != 'electro') {
+          console.log("loading electro and playing");
+          this.load('https://s3.amazonaws.com/relabel/Maceo+Plex+-+Solar+Detroit+%5BELL029%5D.mp3');
+          this.playing = 'electro'
+        }
+        else 
+          this.play_pause();
+        break;
+      case 'house' :
+        if(this.playing != 'house') {
+          console.log("loading house and playing");
+          this.load('https://s3.amazonaws.com/relabel/Tale+Of+Us+-+North+Star.mp3');
+          this.playing = 'house'
+        }
+        else 
+          this.play_pause();
+        break;
+      case 'vgm' :
+        if(this.playing != 'vgm') {
+          console.log("loading vgm and playing");
+          this.load('https://s3.amazonaws.com/relabel/Pan-Pot+-+Fugitives+(Joseph+Capriati+Remix).mp3');
+          this.playing = 'vgm'
+        }
+        else 
+          this.play_pause();
+        break;
+      case 'hard_acid' :
+        if(this.playing != 'hard_acid') {
+          console.log("loading hard_acid and playing");
+          this.load('https://s3.amazonaws.com/relabel/Emmanuel+Top+-+Turkish+Bazar.mp3');
+          this.playing = 'hard_acid'
+        }
+        else 
+          this.play_pause();
+        break;
     }
   }
   play_pause() {
